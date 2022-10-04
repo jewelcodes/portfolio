@@ -56,7 +56,7 @@ p {
     bottom: 11vh;
     width: 9vw;
     height: 9vw;
-    background-image: url('heart.png');
+    background-image: url('images/heart.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -70,7 +70,7 @@ p {
     top: 15vh;
     width: 21vw;
     height: 21vw;
-    background-image: url('saturn.png');
+    background-image: url('images/saturn.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

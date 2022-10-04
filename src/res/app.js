@@ -106,7 +106,7 @@ async function app_main() {
     await open_blog();
 
     create_window("main", "About", 40, -1, -1, -1);
-    create_image("main", "res/celeste.png", "Celeste", 30, 30, 2);
+    create_image("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
     create_text("main", main_text);
     center_window("main");
     show_window("main");
