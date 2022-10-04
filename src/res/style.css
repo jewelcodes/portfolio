@@ -1,0 +1,183 @@
+
+/* epic portfolio website
+   jewel, 2022 */
+
+/* 
+ * the agave font is distributed under the MIT license and is (c) 2013-2021 by
+ * type agaric <agaric@protonmail.com>
+ * https://b.agaric.net/page/agave
+ */
+
+@font-face {
+    font-family: agave;
+    src: url('fonts/agave-regular.ttf');
+}
+
+@font-face {
+    font-family: agave;
+    src: url('fonts/agave-bold.ttf');
+    font-weight: bold;
+}
+
+* {
+    outline: none !important;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: agave, monospace;
+    font-size: 12pt;
+    line-height: 14pt;
+    overflow: hidden !important;
+    cursor: default;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0px;
+    padding: 0px;
+    color: #111;
+    /*background: linear-gradient(to right, #c0bbff, #f8ceda) #e2c7e6;*/
+    /*background: linear-gradient(to right, #d6a9db, #a299cc);*/
+    /*background: linear-gradient(to right, #dbadcc, #9fa6f5);*/
+    background: linear-gradient(to right, #b58ecc, #81abcc) #9c9ccc;
+}
+
+p {
+    margin: 6px 0px 12px 0px !important;
+    padding: 0px !important;
+}
+
+#heart {
+    position: fixed;
+    z-index: 1;    /* actual windows will never go negative, keep this as the lowest item */
+    left: 9vw;
+    bottom: 11vh;
+    width: 9vw;
+    height: 9vw;
+    background-image: url('heart.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: saturate(0.6) brightness(1.2);
+}
+
+#saturn {
+    position: fixed;
+    z-index: 2;
+    right: 9vw;
+    top: 15vh;
+    width: 21vw;
+    height: 21vw;
+    background-image: url('saturn.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /*filter: saturate(0.8);*/
+}
+
+.window {
+    display: block;
+    position: absolute;
+    /*border-top: 3px solid #5d3420;
+    border-left: 3px solid #5d3420;
+    border-right: 5px solid #5d3420;
+    border-bottom: 5px solid #5d3420;*/
+    border: 1px solid #222;
+    padding: 1px;
+    background-color: #222;
+    /*border-radius: 4px;*/
+    box-shadow: 4px 4px 0 0.1px #222;
+}
+
+/* #5d3420 */
+
+.title {
+    display: block;
+    padding: 3px 6px 3px 6px;
+    background-color: #d498b6;
+    border-bottom: 2px solid #222;
+    color: #47333d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title_active {
+    background-color: #d9669f !important;
+    color: #111 !important;
+}
+
+.content {
+    padding: 12px;
+    /*background-color: #f6eada;*/
+    background-color: #ebe1d9;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.button_container {
+    padding: 8px;
+    text-align: center;
+}
+
+button, input[type=button], input[type=submit] {
+    font-family: agave, monospace;
+    font-size: 12pt;
+    line-height: 14pt;
+
+    background-color: #d1bac6;
+    border: 2px solid;
+    border-color: #7d5a6b #222 #222 #7d5a6b;
+    margin: 0px;
+    padding: 4px 16px 4px 16px;
+}
+
+button:active, input[type=button]:active, input[type=submit]:active {
+    border-color: #222 #7d5a6b #7d5a6b #222;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+li::before {
+    content: '\2022';
+    margin-right: 8px;
+}
+
+a {
+    cursor: pointer !important;
+    text-decoration: underline;
+    color: #ab4f7b;
+}
+
+img {
+    display: inline-block;
+    border: 2px solid #222;
+    background-color: #222;
+}
+
+h1, h2 {
+    margin: 0px 0px 8px 0px !important;
+    padding: 0px !important;
+    line-height: 105%;
+}
+
+h3, h4, h5 {
+    margin: 0px 0px 1px 0px !important;
+    padding: 0px !important;
+    line-height: 100%;
+}
