@@ -2,41 +2,41 @@
 /* epic portfolio website
    jewel, 2022 */
 
-const art_text = "\
+const artText = "\
     * Heart: [Dansevenstar on OpenGameArt](https://opengameart.org/content/heart-pixel-art)\n \
     * Saturn: [ID 9664c4 on Pixel Art Maker](http://pixelartmaker.com/art/c21dda2f6d67dbc)\n \
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [ID 9664c4 on Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)";
 
-const main_text = "\
+const mainText = "\
     Hi, I'm Jewel (obviously an online alias) c:\n\n \
     I'm a 20-year-old undergrad biotech student from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
     I've had a passion for coding for as far back as I can remember and some of my work is showcased here.";
 
-function show_art() {
-    if(get_window("art")) {
-        set_active_window("art");
+function showArt() {
+    if(getWindow("art")) {
+        setActiveWindow("art");
         return;
     }
 
-    create_window("art", "Art Credits", 32, -1, 0, 0);
-    dialog("art", art_text, "OK");
-    randomize_window_position("art");
-    show_window("art");
+    createWindow("art", "Art Credits", 32, -1, 0, 0);
+    dialog("art", artText, "OK");
+    randomizeWindowPosition("art");
+    showWindow("art");
 }
 
 var response, posts;
 
-async function open_blog() {
-    create_window("blog", "Blog", 43, 35, 0, 0);
+async function openBlog() {
+    createWindow("blog", "Blog", 43, 35, 0, 0);
 
     // generate list of blog posts
-    var blog_md = new String();
-    blog_md = "";
+    var blogMd = new String();
+    blogMd = "";
 
     response = await fetch("res/posts/posts");
     if(!response.ok || response.status != 200) {
-        create_text("blog", "Unable to fetch blog posts. Check your internet connection.");
-        show_window("blog");
+        createText("blog", "Unable to fetch blog posts. Check your internet connection.");
+        showWindow("blog");
         return;
     }
 
@@ -44,16 +44,16 @@ async function open_blog() {
     //debug(posts.posts.length);
 
     for(var i = 0; i < posts.posts.length; i++) {
-        blog_md += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + time_string(posts.posts[i].time) + "\n";
+        blogMd += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + timeString(posts.posts[i].time) + "\n";
     }
 
-    create_text("blog", blog_md);
-    show_window("blog");
+    createText("blog", blogMd);
+    showWindow("blog");
 }
 
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-function time_string(t) {
+function timeString(t) {
     var elapsed = (Date.now() / 1000) - t;
     var str = new String();
 
@@ -81,7 +81,7 @@ function time_string(t) {
 }
 
 // opens a specific blog post
-async function blog_post(id) {
+async function blogPost(id) {
     let response = await fetch("res/posts/" + id + ".md");
     if(!response.ok || response.status != 200) {
         alert("error");
@@ -90,25 +90,25 @@ async function blog_post(id) {
 
     let post = await response.text();
 
-    create_window("post_" + id, posts.posts[id].title, 40, 65, 0, 0);
+    createWindow("post_" + id, posts.posts[id].title, 40, 65, 0, 0);
 
-    create_text("post_" + id, "# " + posts.posts[id].title);
-    create_text("post_" + id, "**- " + time_string(posts.posts[id].time) + "**");
+    createText("post_" + id, "# " + posts.posts[id].title);
+    createText("post_" + id, "**- " + timeString(posts.posts[id].time) + "**");
 
-    create_text("post_" + id, post);
-    show_window("post_" + id);
+    createText("post_" + id, post);
+    showWindow("post_" + id);
 }
 
-async function app_main() {
-    document.getElementById("heart").onclick = function() { show_art(); };
+async function appMain() {
+    document.getElementById("heart").onclick = function() { showArt(); };
     document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
 
-    await open_blog();
+    await openBlog();
 
-    create_window("main", "About", 40, -1, -1, -1);
-    create_image("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
-    create_text("main", main_text);
-    center_window("main");
-    show_window("main");
+    createWindow("main", "About", 40, -1, -1, -1);
+    createImage("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
+    createText("main", mainText);
+    centerWindow("main");
+    showWindow("main");
 }
 

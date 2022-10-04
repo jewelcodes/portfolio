@@ -13,12 +13,12 @@ function error(s) {
 }
 
 /* can't believe i'm actually writing a windowing system in javascript */
-var dragged_window = null;
-var active_window = null;
-var window_count = 0;
+var draggedWindow = null;
+var activeWindow = null;
+var windowCount = 0;
 
-function set_active_window(id) {
-    debug("set_active_window('" + id + "')");
+function setactiveWindow(id) {
+    debug("setActiveWindow('" + id + "')");
 
     const titles = document.getElementsByClassName("title");
     if(!titles.length) {
@@ -26,15 +26,15 @@ function set_active_window(id) {
         return;
     }
 
-    //if(active_window == id) return;
+    //if(activeWindow == id) return;
 
     for(var i = 0; i < titles.length; i++) {
         if(titles[i].parentNode.id == id) {
-            active_window = id;
-            titles[i].classList.add("title_active");
-            titles[i].parentNode.style.zIndex = window_count + 2;
+            activeWindow = id;
+            titles[i].classList.add("titleActive");
+            titles[i].parentNode.style.zIndex = windowCount + 2;
         } else {
-            titles[i].classList.remove("title_active");
+            titles[i].classList.remove("titleActive");
             titles[i].parentNode.style.zIndex--;
             if(titles[i].parentNode.style.zIndex <= 3) {
                 titles[i].parentNode.style.zIndex = 3;
@@ -43,9 +43,9 @@ function set_active_window(id) {
     }
 }
 
-function handle_drag(e) {
-    if(dragged_window != null && e.buttons & 1) {
-        const w = document.getElementById(dragged_window);
+function handleDrag(e) {
+    if(draggedWindow != null && e.buttons & 1) {
+        const w = document.getElementById(draggedWindow);
         var x = w.offsetLeft;
         var y = w.offsetTop;
 
@@ -71,14 +71,14 @@ function handle_drag(e) {
 // Width and Height are in both % of viewport
 // set x or y to -1 for center, zero for random, else they are in pixels
 // set height to -1 for automatic height
-function create_window(id, title, w, h, x, y) {
-    window_count++;
+function createWindow(id, title, w, h, x, y) {
+    windowCount++;
 
-    debug("create_window('" + id + "', '" + title + "', " + w + ", " + h + ", " + x + ", " + y + ")");
+    debug("createWindow('" + id + "', '" + title + "', " + w + ", " + h + ", " + x + ", " + y + ")");
 
-    if(get_window(id)) {
+    if(getWindow(id)) {
         error("window '" + id + "' already exists, bringing it to front");
-        show_window(id);
+        showWindow(id);
         return;
     }
 
@@ -86,12 +86,12 @@ function create_window(id, title, w, h, x, y) {
     const e  = document.createElement("div");
     e.id = id;
     e.classList.add("window");
-    e.style.zIndex = window_count + 2;
+    e.style.zIndex = windowCount + 2;
     e.style.width = w + "vw";
 
     //if(h != -1) e.style.height = h + "vh";
 
-    e.style.visibility = "hidden";  // need to manually use show_window()
+    e.style.visibility = "hidden";  // need to manually use showWindow()
 
     // title bar
     const t = document.createElement("div");
@@ -100,12 +100,12 @@ function create_window(id, title, w, h, x, y) {
 
     // basic event handlers
     e.onclick = function() {        // focus handler
-        set_active_window(id);
+        setactiveWindow(id);
     };
 
     t.onmousedown = function() {    // for dragging
-        set_active_window(id);
-        dragged_window = id;
+        setactiveWindow(id);
+        draggedWindow = id;
     };
 
     // window content
@@ -143,20 +143,20 @@ function create_window(id, title, w, h, x, y) {
     }
 }
 
-function show_window(id) {
-    debug("show_window('" + id + "')");
+function showWindow(id) {
+    debug("showWindow('" + id + "')");
     document.getElementById(id).style.visibility = "visible";
 
-    set_active_window(id);
+    setactiveWindow(id);
 }
 
-function hide_window(id) {
-    debug("hide_window('" + id + "')");
+function hideWindow(id) {
+    debug("hideWindow('" + id + "')");
     document.getElementById(id).style.visibility = "hidden";
 }
 
-function randomize_window_position(id) {
-    debug("randomize_window_position('" + id + "')");
+function randomizeWindowPosition(id) {
+    debug("randomizeWindowPosition('" + id + "')");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -173,8 +173,8 @@ function randomize_window_position(id) {
     w.style.top = y + "px";
 }
 
-function center_window(id) {
-    debug("randomize_window_position('" + id + "')");
+function centerWindow(id) {
+    debug("centerWindow('" + id + "')");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -188,27 +188,27 @@ function center_window(id) {
     w.style.top = y + "px";
 }
 
-function get_window(id) {   // this exists only for readability
-    debug("get_window('" + id + "')");
+function getWindow(id) {   // this exists only for readability
+    debug("getWindow('" + id + "')");
     return document.getElementById(id);
 }
 
-function destroy_window(id) {
-    debug("destroy_window('" + id + "')");
+function destroyWindow(id) {
+    debug("destroyWindow('" + id + "')");
 
-    if(!get_window(id)) {
+    if(!getWindow(id)) {
         error("window '" + id + "' doesn't exist");
         return;
     }
 
     document.getElementById(id).remove();
 
-    window_count--;
+    windowCount--;
 }
 
 /* window body content manager */
-function dialog(id, text, button_text) {    // creates a standard dialog with text and one button that closes it
-    debug("dialog('" + id + "', '" + text + "', '" + button_text + "')");
+function dialog(id, text, buttonText) {    // creates a standard dialog with text and one button that closes it
+    debug("dialog('" + id + "', '" + text + "', '" + buttonText + "')");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -217,29 +217,29 @@ function dialog(id, text, button_text) {    // creates a standard dialog with te
     }
 
     const content = w.children[1];
-    content.innerHTML = parse_md(text);
+    content.innerHTML = parseMd(text);
 
     const container = document.createElement("div");
-    container.classList.add("button_container");
+    container.classList.add("buttonContainer");
 
     const button = document.createElement("button");
-    button.innerText = button_text;
+    button.innerText = buttonText;
 
     button.onclick = function() {
-        destroy_window(id);
+        destroyWindow(id);
     };
 
     container.appendChild(button);
     content.appendChild(container);
 }
 
-function yes_no(id, text, handler) {    // creates a yes/no dialog box that then calls handler() with the choice
+function yesNo(id, text, handler) {    // creates a yes/no dialog box that then calls handler() with the choice
     // TODO
 }
 
 /* these functions are for non-standard dialog boxes */
-function create_text(id, text) {    // adds markdown text to a window that already exists
-    debug("create_text('" + id + "', '" + text + "')");
+function createText(id, text) {    // adds markdown text to a window that already exists
+    debug("createText('" + id + "', '" + text + "')");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -248,11 +248,11 @@ function create_text(id, text) {    // adds markdown text to a window that alrea
     }
 
     const content = w.children[1];
-    content.innerHTML += parse_md(text);
+    content.innerHTML += parseMd(text);
 }
 
-function create_link(id, text, handler) {   // creates a link that runs a handler on click
-    debug("create_link('" + id + "', '" + text + "', " + handler + ")");
+function createLink(id, text, handler) {   // creates a link that runs a handler on click
+    debug("createLink('" + id + "', '" + text + "', " + handler + ")");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -270,8 +270,8 @@ function create_link(id, text, handler) {   // creates a link that runs a handle
     content.appendChild(l);
 }
 
-function create_outlink(id, text, url) {    // creates a link that opens another page
-    debug("create_outlink('" + id + "', '" + text + "', '" + url + "')");
+function createOutlink(id, text, url) {    // creates a link that opens another page
+    debug("createOutlink('" + id + "', '" + text + "', '" + url + "')");
 
     const w = document.getElementById(id);
     if(!w) {
@@ -292,8 +292,8 @@ function create_outlink(id, text, url) {    // creates a link that opens another
 // creates an image
 // width and height are in % of window, height can be omitted (zero) to auto-adjust according to width
 // align 0 = left, 1 = right, 2 = center
-function create_image(id, url, alt, w, h, align) {
-    debug("create_image('" + id + "', '" + url + "', '" + alt + "', " + w + ", " + h + ", " + align + ")");
+function createImage(id, url, alt, w, h, align) {
+    debug("createImage('" + id + "', '" + url + "', '" + alt + "', " + w + ", " + h + ", " + align + ")");
 
     const wi = document.getElementById(id);
     if(!wi) {
@@ -326,10 +326,10 @@ function create_image(id, url, alt, w, h, align) {
 }
 
 /* for the background heart and things */
-var heart_minx, heart_miny, heart_maxx, heart_maxy;
-var saturn_minx, saturn_miny, saturn_maxx, saturn_maxy;
+var heartMinx, heartMiny, heartMaxx, heartMaxy;
+var saturnMinx, saturnMiny, saturnMaxx, saturnMaxy;
 
-function move_background(e) {
+function moveBackground(e) {
     const heart = document.getElementById("heart");
     const saturn = document.getElementById("saturn");
 
@@ -337,19 +337,19 @@ function move_background(e) {
 
     nx = heart.offsetLeft + (e.movementX/30);
     ny = heart.offsetTop + (e.movementY/30);
-    if(nx > heart_maxx) nx = heart_maxx;
-    if(nx < heart_minx) nx = heart_minx;
-    if(ny > heart_maxy) ny = heart_maxy;
-    if(ny < heart_miny) ny = heart_miny;
+    if(nx > heartMaxx) nx = heartMaxx;
+    if(nx < heartMinx) nx = heartMinx;
+    if(ny > heartMaxy) ny = heartMaxy;
+    if(ny < heartMiny) ny = heartMiny;
     heart.style.left = nx + "px";
     heart.style.top = ny + "px";
 
     nx = saturn.offsetLeft - (e.movementX/25);
     ny = saturn.offsetTop - (e.movementY/25);
-    if(nx > saturn_maxx) nx = saturn_maxx;
-    if(nx < saturn_minx) nx = saturn_minx;
-    if(ny > saturn_maxy) ny = saturn_maxy;
-    if(ny < saturn_miny) ny = saturn_miny;
+    if(nx > saturnMaxx) nx = saturnMaxx;
+    if(nx < saturnMinx) nx = saturnMinx;
+    if(ny > saturnMaxy) ny = saturnMaxy;
+    if(ny < saturnMiny) ny = saturnMiny;
     saturn.style.left = nx + "px";
     saturn.style.top = ny + "px";
 }
@@ -358,24 +358,24 @@ window.onload = function() {
     const heart = document.getElementById("heart");
     const saturn = document.getElementById("saturn");
 
-    heart_minx = heart.offsetLeft;
-    heart_maxx = (window.innerWidth/2) - (heart.offsetWidth);
-    heart_maxy = heart.offsetTop;
-    heart_miny = (window.innerHeight/2) - (heart.offsetHeight/2);
+    heartMinx = heart.offsetLeft;
+    heartMaxx = (window.innerWidth/2) - (heart.offsetWidth);
+    heartMaxy = heart.offsetTop;
+    heartMiny = (window.innerHeight/2) - (heart.offsetHeight/2);
 
-    saturn_maxx = saturn.offsetLeft;
-    saturn_minx = (window.innerWidth/2) - (saturn.offsetWidth);
-    saturn_miny = saturn.offsetTop;
-    saturn_maxy = (window.innerHeight/2) - (saturn.offsetHeight/2);
+    saturnMaxx = saturn.offsetLeft;
+    saturnMinx = (window.innerWidth/2) - (saturn.offsetWidth);
+    saturnMiny = saturn.offsetTop;
+    saturnMaxy = (window.innerHeight/2) - (saturn.offsetHeight/2);
 
     window.onmouseup = function() {
-        dragged_window = null;
+        draggedWindow = null;
     };
 
     window.onmousemove = function(e) {
-        handle_drag(e);
-        move_background(e);
+        handleDrag(e);
+        moveBackground(e);
     };
 
-    app_main();
+    appMain();
 };

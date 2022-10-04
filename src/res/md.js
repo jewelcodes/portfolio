@@ -4,24 +4,24 @@
 
 // minimalistic markdown parser
 
-function parse_md(md) {     // markdown to html
-    var is_bold = false;
-    var is_italic = false;
-    var line_break = true;     // whether or not the last char was \n
-    var list_item = false;
+function parseMd(md) {     // markdown to html
+    var isBold = false;
+    var isItalic = false;
+    var lineBreak = true;     // whether or not the last char was \n
+    var listItem = false;
     var list = false;
 
-    var heading_level = 0;      // 0 = none, 1-5 for h1 - h5
+    var headingLevel = 0;      // 0 = none, 1-5 for h1 - h5
 
     var output = new String();
-    var link_text = new String();
-    var link_url = new String();
+    var linkText = new String();
+    var linkUrl = new String();
 
     output = "<p>";
 
     for(var i = 0; i < md.length; i++) {
         if(md[i] == '\n') {
-            if(line_break) {
+            if(lineBreak) {
                 // previous char was also a line break, start a new paragraph or end a list
                 if(list) {
                     list = false;
@@ -30,22 +30,22 @@ function parse_md(md) {     // markdown to html
                 } else {
                     output += "</p><p>";
                 }
-            } else if(heading_level != 0) {
-                output += "</h" + heading_level + "><p>";
-                heading_level = 0;
-            } else if(list_item) {
+            } else if(headingLevel != 0) {
+                output += "</h" + headingLevel + "><p>";
+                headingLevel = 0;
+            } else if(listItem) {
                 debug("list item newline");
                 output += "</li>";
-                list_item = false;
+                listItem = false;
             } else {
                 output += "<br>";   // normal line breaks
             }
-            line_break = true;
+            lineBreak = true;
         } else if(md[i] == '*') {
             // bold and italics and lists
             if((i+1) <= md.length) {
                 if(md[i+1] == '*') {
-                    is_italic = !is_italic;
+                    isItalic = !isItalic;
                     i++;    // skip
                 } else if(md[i+1] == ' ') {
                     // list
@@ -54,88 +54,88 @@ function parse_md(md) {     // markdown to html
                         list = true;
                     }
 
-                    list_item = true;
+                    listItem = true;
                     output += "<li>";
 
                     i++;    // skip
                 } else {
-                    is_bold = !is_bold;
+                    isBold = !isBold;
                 }
             } else {
-                is_bold = !is_bold;
+                isBold = !isBold;
             }
 
-            if(is_bold) output += "<strong>";
+            if(isBold) output += "<strong>";
             else output += "</strong>";
 
-            if(is_italic) output += "<em>";
+            if(isItalic) output += "<em>";
             else output += "</em>";
         } else if(md[i] == '[') {
             // potential start of a link's text
-            link_text = "";
-            link_url = "";
+            linkText = "";
+            linkUrl = "";
 
             i++;    // ksip opening
 
             for(; md[i] != ']' && i < md.length; i++) {
-                link_text += md[i];
+                linkText += md[i];
             }
 
             if((i+1) >= md.length || md[i+1] != '(') {
                 // not a link
-                output += "[" + link_text + "]";
+                output += "[" + linkText + "]";
             } else {
                 // this is a link
-                debug("link text: " + link_text);
+                debug("link text: " + linkText);
 
                 // now we copy the link's URL
                 i += 2;
                 for(; md[i] != ')' && i < md.length; i++) {
-                    link_url += md[i];
+                    linkUrl += md[i];
                 }
 
-                debug("link url: " + link_url);
+                debug("link url: " + linkUrl);
 
-                if(link_url[0] == 'b' && link_url[1] == 'p' && link_url[2] == ':') {
+                if(linkUrl[0] == 'b' && linkUrl[1] == 'p' && linkUrl[2] == ':') {
                     // blog post
-                    output += "<a onclick=\"blog_post('" + link_url.substring(3) + "')\">" + link_text + "</a>";
+                    output += "<a onclick=\"blogPost('" + linkUrl.substring(3) + "')\">" + linkText + "</a>";
                 } else {
                     // normal link
-                    output += "<a target=\"_blank\" href=\"" + link_url + "\">" + link_text + "</a>";
+                    output += "<a target=\"_blank\" href=\"" + linkUrl + "\">" + linkText + "</a>";
                 }
             }
         } else if(md[i] == '&') {
             output += "&amp;";
-            line_break = false;
+            lineBreak = false;
         } else if(md[i] == '<') {
             output += "&lt;";
-            line_break = false;
+            lineBreak = false;
         } else if(md[i] == '>') {
             output += "&gt;";
-            line_break = false;
-        } else if(md[i] == '#' && line_break) {
+            lineBreak = false;
+        } else if(md[i] == '#' && lineBreak) {
             // headings - h1 through h5
-            line_break = false;
+            lineBreak = false;
             output += "</p>";
 
-            heading_level = 1;
+            headingLevel = 1;
 
             i++;
-            for(; md[i] == '#' && heading_level < 6; i++) {
-                heading_level++;
+            for(; md[i] == '#' && headingLevel < 6; i++) {
+                headingLevel++;
             }
 
-            output += "<h" + heading_level + ">";
+            output += "<h" + headingLevel + ">";
         } else {
             // normal character
             output += md[i];
-            line_break = false;
+            lineBreak = false;
         }
     }
 
-    if(is_bold) output += "</strong>";
-    if(is_italic) output += "</em>";
-    if(list_item) output += "</li>";
+    if(isBold) output += "</strong>";
+    if(isItalic) output += "</em>";
+    if(listItem) output += "</li>";
     if(list) output += "</ul>";
 
     output += "</p>";

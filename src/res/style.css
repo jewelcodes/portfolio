@@ -104,7 +104,7 @@ p {
     text-overflow: ellipsis;
 }
 
-.title_active {
+.titleActive {
     background-color: #d9669f !important;
     color: #111 !important;
 }
@@ -123,7 +123,7 @@ p {
     display: none;  /* Safari and Chrome */
 }
 
-.button_container {
+.buttonContainer {
     padding: 8px;
     text-align: center;
 }
