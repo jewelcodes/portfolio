@@ -206,6 +206,23 @@ function destroyWindow(id) {
     windowCount--;
 }
 
+/* scrollbar implementation */
+function updateScrollbarPosition(w) {
+    const sbc = w.children[2];
+    const sb = sbc.children[0];
+    const c = w.children[1];
+
+    var maxy = sbc.offsetHeight;
+
+    var currentScroll = c.scrollTop;
+    var maxScroll = c.scrollHeight;
+    var ratio = currentScroll/maxScroll;
+
+    var y = ratio * maxy;
+
+    sb.style.top = y + "px";
+}
+
 function setScrollable(id, scrollable) {    // this only works for windows with a preset height
     debug("setScrollable('" + id + "', " + scrollable + ")");
 
@@ -217,23 +234,41 @@ function setScrollable(id, scrollable) {    // this only works for windows with 
 
     const content = w.children[1];
 
-    // window containers 2 or 3 elements: title bar, content container, and optionally scrollbar
-    if(w.children.length == 3) {
-        error("window '" + id + "' is already scrollable");
-        return;
+    // windows contain 2 or 3 elements: title bar, content container, and optionally scrollbar
+    if(scrollable) {
+        // add a scrollbar
+        if(w.children.length == 3) {
+            error("window '" + id + "' is already scrollable");
+            return;
+        }
+
+        const sbc = document.createElement("div");
+        sbc.classList.add("scrollbarContainer");
+        sbc.style.height = "calc(" + content.style.height + " + 24px)";
+
+        const sb = document.createElement("div");
+        sb.classList.add("scrollbar");
+
+        sbc.appendChild(sb);
+        w.appendChild(sbc);
+
+        content.classList.add("contentScrollable");
+
+        // determine scrollbar height
+        var visible = content.offsetHeight/content.scrollHeight;
+        if(visible > 1) visible = 1;
+
+        var height = visible * content.offsetHeight;
+        if(height > content.offsetHeight) height = content.offsetHeight;
+        if(height < 24) height = 24;
+        sb.style.height = height + "px";
+
+        content.onscroll = function() { updateScrollbarPosition(w); };
+        updateScrollbarPosition(w);
+    } else {
+        // TODO: remove scrollbar
+        error("unimplemented remove scrollbar");
     }
-
-    const sbc = document.createElement("div");
-    sbc.classList.add("scrollbarContainer");
-    sbc.style.height = "calc(" + content.style.height + " + 24px)";
-
-    const sb = document.createElement("div");
-    sb.classList.add("scrollbar");
-
-    sbc.appendChild(sb);
-    w.appendChild(sbc);
-
-    content.classList.add("contentScrollable");
 }
 
 /* window body content manager */
