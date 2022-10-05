@@ -199,7 +199,10 @@ h3, h4, h5 {
 }
 
 .scrollbar {
-    width: 16px;
+    position: relative;
+    box-sizing: border-box;
+    width: 20px;
+    min-height: 24px;
     background-color: #d1bac6;
     border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;
