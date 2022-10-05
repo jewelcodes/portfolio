@@ -17,7 +17,7 @@ var draggedWindow = null;
 var activeWindow = null;
 var windowCount = 0;
 
-function setactiveWindow(id) {
+function setActiveWindow(id) {
     debug("setActiveWindow('" + id + "')");
 
     const titles = document.getElementsByClassName("title");
@@ -100,11 +100,11 @@ function createWindow(id, title, w, h, x, y) {
 
     // basic event handlers
     e.onclick = function() {        // focus handler
-        setactiveWindow(id);
+        setActiveWindow(id);
     };
 
     t.onmousedown = function() {    // for dragging
-        setactiveWindow(id);
+        setActiveWindow(id);
         draggedWindow = id;
     };
 
@@ -147,7 +147,7 @@ function showWindow(id) {
     debug("showWindow('" + id + "')");
     document.getElementById(id).style.visibility = "visible";
 
-    setactiveWindow(id);
+    setActiveWindow(id);
 }
 
 function hideWindow(id) {
