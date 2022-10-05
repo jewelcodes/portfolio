@@ -206,6 +206,36 @@ function destroyWindow(id) {
     windowCount--;
 }
 
+function setScrollable(id, scrollable) {    // this only works for windows with a preset height
+    debug("setScrollable('" + id + "', " + scrollable + ")");
+
+    const w = document.getElementById(id);
+    if(!w) {
+        error("window '" + id + "' doesn't exist");
+        return;
+    }
+
+    const content = w.children[1];
+
+    // window containers 2 or 3 elements: title bar, content container, and optionally scrollbar
+    if(w.children.length == 3) {
+        error("window '" + id + "' is already scrollable");
+        return;
+    }
+
+    const sbc = document.createElement("div");
+    sbc.classList.add("scrollbarContainer");
+    sbc.style.height = "calc(" + content.style.height + " + 24px)";
+
+    const sb = document.createElement("div");
+    sb.classList.add("scrollbar");
+
+    sbc.appendChild(sb);
+    w.appendChild(sbc);
+
+    content.classList.add("contentScrollable");
+}
+
 /* window body content manager */
 function dialog(id, text, buttonText) {    // creates a standard dialog with text and one button that closes it
     debug("dialog('" + id + "', '" + text + "', '" + buttonText + "')");

@@ -106,6 +106,7 @@ async function blogPost(id) {
     createText("post_" + id, "**- " + timeString(posts.posts[id].time) + "**");
 
     createText("post_" + id, post);
+    setScrollable("post_" + id, true);
     showWindow("post_" + id);
 }
 
