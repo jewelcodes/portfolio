@@ -27,6 +27,11 @@ function showArt() {
 var response, posts;
 
 async function openBlog() {
+    if(getWindow("blog")) {
+        setActiveWindow("blog");
+        return;
+    }
+
     createWindow("blog", "Blog", 43, 35, 0, 0);
 
     // generate list of blog posts
@@ -82,6 +87,11 @@ function timeString(t) {
 
 // opens a specific blog post
 async function blogPost(id) {
+    if(getWindow("post_" + id)) {
+        setActiveWindow("post_" + id);
+        return;
+    }
+
     let response = await fetch("res/posts/" + id + ".md");
     if(!response.ok || response.status != 200) {
         alert("error");
