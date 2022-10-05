@@ -33,7 +33,7 @@ async function openBlog() {
     var blogMd = new String();
     blogMd = "";
 
-    response = await fetch("res/posts/posts");
+    response = await fetch("res/posts/posts.json");
     if(!response.ok || response.status != 200) {
         createText("blog", "Unable to fetch blog posts. Check your internet connection.");
         showWindow("blog");
