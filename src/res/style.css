@@ -96,14 +96,27 @@ p {
     background-color: #d498b6;
     border-bottom: 2px solid #222;
     color: #47333d;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .titleActive {
     background-color: #d9669f !important;
     color: #111 !important;
+}
+
+.title div {    /* title text container */
+    float: left;
+    display: block;
+    width: calc(100% - 14pt - 3px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.titleButton {
+    text-align: right;
+    display: inline-block;
+    width: 14pt;
+    height: 14pt;
 }
 
 .content {

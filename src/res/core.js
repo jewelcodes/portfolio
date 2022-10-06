@@ -94,9 +94,20 @@ function createWindow(id, title, w, h, x, y) {
     e.style.visibility = "hidden";  // need to manually use showWindow()
 
     // title bar
+    const tContainer = document.createElement("div");
+    tContainer.classList.add("title");
+
     const t = document.createElement("div");
-    t.classList.add("title");
-    t.innerHTML = title;
+    t.innerText = title;
+    tContainer.appendChild(t);
+
+    // close icon, fontawesome-dependent
+    const close = document.createElement("i");
+    close.classList.add("titleButton");
+    close.classList.add("fa-sharp");
+    close.classList.add("fa-solid");
+    close.classList.add("fa-xmark");
+    tContainer.appendChild(close);
 
     // basic event handlers
     e.onclick = function() {        // focus handler
@@ -116,7 +127,7 @@ function createWindow(id, title, w, h, x, y) {
 
     /*c.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";*/
 
-    e.appendChild(t);
+    e.appendChild(tContainer);
     e.appendChild(c);
 
     // apparently you can only calculate elements' width/height if they're already in the DOM
