@@ -90,8 +90,6 @@ p {
     box-shadow: 4px 4px 0 0.1px #222;
 }
 
-/* #5d3420 */
-
 .title {
     display: block;
     padding: 3px 6px 3px 6px;
@@ -143,6 +141,7 @@ button, input[type=button], input[type=submit] {
     line-height: 14pt;
 
     background-color: #d1bac6;
+    color: #111;
     border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;
     margin: 0px;
@@ -207,3 +206,16 @@ h3, h4, h5 {
     border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;
 }
+
+/* mobile rules */
+@media screen and (max-width: 1279px), screen and (orientation: portrait) {
+    .window {
+        min-width: 90vw !important;
+        max-width: 95vw !important;
+        max-height: 90vh !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
