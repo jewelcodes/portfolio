@@ -207,20 +207,48 @@ function destroyWindow(id) {
 }
 
 /* scrollbar implementation */
-function updateScrollbarPosition(w) {
-    const sbc = w.children[2];
-    const sb = sbc.children[0];
-    const c = w.children[1];
+var activeScrollbar = null;
 
-    var maxy = sbc.offsetHeight;
+function updateScrollbarPosition(w) {
+    const sbc = w.children[2];      // container
+    const sb = sbc.children[0];     // moveable bar
+    const c = w.children[1];        // window content
+
+    if(activeScrollbar == sb) return;
 
     var currentScroll = c.scrollTop;
     var maxScroll = c.scrollHeight;
     var ratio = currentScroll/maxScroll;
 
-    var y = ratio * maxy;
+    var y = ratio * sbc.offsetHeight;
 
     sb.style.top = y + "px";
+}
+
+function handleScrollDrag(e) {
+    if(!(e.buttons & 1) || !activeScrollbar) {     // primary button
+        activeScrollbar = null;
+        return;
+    }
+
+    // window -> scrollbar container -> scrollbar
+    // activeScrollbar refers to the scrollbar itself
+    const container = activeScrollbar.parentNode;
+    const content = container.previousElementSibling;
+
+    var y = parseInt(activeScrollbar.style.top);
+    var maxy = container.offsetHeight - activeScrollbar.offsetHeight;
+    var maxScroll = content.scrollHeight - content.offsetHeight;
+
+    y += e.movementY;
+    if(y > maxy) y = maxy;
+    if(y < 0) y = 0;
+
+    //debug("old scrolltop: " + content.scrollTop + ", scroll height: " + content.scrollHeight);
+    //debug("y/maxy ratio = " + y/maxy);
+
+    activeScrollbar.style.top = y + "px";
+    content.scrollTop = Math.floor((y / maxy) * maxScroll);
 }
 
 function setScrollable(id, scrollable) {    // this only works for windows with a preset height
@@ -263,7 +291,10 @@ function setScrollable(id, scrollable) {    // this only works for windows with 
         if(height < 24) height = 24;
         sb.style.height = height + "px";
 
+        // event handlers
         content.onscroll = function() { updateScrollbarPosition(w); };
+        sb.onmousedown = function() { activeScrollbar = sb; };
+        //sb.onmouseup = function() { activeScrollbar = null; };
         updateScrollbarPosition(w);
     } else {
         // TODO: remove scrollbar
@@ -439,6 +470,7 @@ window.onload = function() {
 
     window.onmousemove = function(e) {
         handleDrag(e);
+        handleScrollDrag(e);
         moveBackground(e);
     };
 
