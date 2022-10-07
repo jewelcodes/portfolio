@@ -111,16 +111,27 @@ async function blogPost(id) {
     showWindow("post_" + id);
 }
 
-async function appMain() {
-    document.getElementById("heart").onclick = function() { showArt(); };
-    document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
-
-    await openBlog();
-
+function mainWindow() {
+    if(getWindow("main")) {
+        setActiveWindow("main");
+        return;
+    }
+    
     createWindow("main", "About", 40, -1, -1, -1);
     createImage("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
+}
+
+async function appMain() {
+    document.getElementById("heart").onclick = function() { showArt(); };
+    document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
+
+    addMenuItem("About", mainWindow);
+    addMenuItem("Blog", async function() { await openBlog(); });
+
+    await openBlog();
+    mainWindow();
 }
 

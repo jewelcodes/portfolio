@@ -20,6 +20,8 @@ var windowCount = 0;
 function setActiveWindow(id) {
     debug("setActiveWindow('" + id + "')");
 
+    hideMenu();
+
     const titles = document.getElementsByClassName("title");
     if(!titles.length) {
         error("window '" + id + "' doesn't exist");
@@ -333,6 +335,23 @@ function toggleMenu() {
     }
 }
 
+function hideMenu() {
+    document.getElementById("menu").style.display = "none";
+}
+
+function addMenuItem(text, handler) {
+    const menu = document.getElementById("menu");
+
+    const i = document.createElement("li");
+    i.innerText = text;
+    i.onclick = function() {
+        hideMenu();
+        handler();
+    };
+
+    menu.appendChild(i);
+}
+
 function createTaskbar() {
     debug("createTaskbar()");
 
@@ -340,7 +359,8 @@ function createTaskbar() {
     taskbar.id = "taskbar";
 
     const menuButton = document.createElement("button");
-    menuButton.innerHTML = "Menu";
+    menuButton.id = "menuButton";
+    menuButton.innerText = "Menu";
     menuButton.style.fontWeight = "bold";
     menuButton.style.marginRight = "16px";
 
@@ -357,9 +377,10 @@ function createTaskbar() {
 
     document.body.appendChild(menu);
 
-    menu.innerHTML = "<li>test</li><li>test 2</li>"
+    //menu.innerHTML = "<li>test</li><li>test 2</li>"
 
-    taskbar.onclick = function() { toggleMenu(); };
+    menuButton.onclick = function() { toggleMenu(); };
+    //menuButton.onblur = function() { hideMenu(); };
 }
 
 /* window body content manager */
