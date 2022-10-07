@@ -167,16 +167,17 @@ button:active, input[type=button]:active, input[type=submit]:active {
     border-color: #222 #7d5a6b #7d5a6b #222;
 }
 
-ul {
+.content ul {
     margin: 0px;
     padding: 0px;
-}
-
-li {
     list-style: none;
 }
 
-li::before {
+.content li {
+    list-style: none;
+}
+
+.content li::before {
     content: '\2022';
     margin-right: 8px;
 }
@@ -220,6 +221,45 @@ h3, h4, h5 {
     background-color: #d1bac6;
     border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;
+}
+
+#taskbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999999;    /* always on top */
+    width: 100vw;
+    background-color: #d1bac6;
+    padding: 0px 4px 0px 4px;
+}
+
+#menu {
+    position: fixed;
+    left: 4px;      /* top position will be accounted for later */
+    min-width: 18vw;
+    background-color: #d1bac6;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 2px solid;
+    border-color: #7d5a6b #222 #222 #7d5a6b;
+}
+
+#menu li {
+    list-style: none;
+    margin: 0px !important;
+    box-sizing: border-box;
+    padding: 8px 16px 8px 16px !important;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #7d5a6b;
+}
+
+#menu li:last-child {
+    border: 0px !important;
+}
+
+#menu li:hover {
+    background-color: #d498b6;
 }
 
 /* mobile rules */

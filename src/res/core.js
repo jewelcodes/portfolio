@@ -57,7 +57,7 @@ function handleDrag(e) {
 
         // boundaries
         if(x < 0) x = 0;
-        if(y < 0) y = 0;
+        if(y < taskbarHeight) y = taskbarHeight;
         if(x > maxx) x = maxx;
         if(y > maxy) y = maxy;
 
@@ -139,12 +139,14 @@ function createWindow(id, title, w, h, x, y) {
     if((x == -1) || (y == -1)) {
         var nx = (window.innerWidth / 2) - (e.offsetWidth / 2);
         var ny = (window.innerHeight / 2) - (e.offsetHeight / 2);
+        if(ny < taskbarHeight) ny = taskbarHeight;
         e.style.left = nx + "px";
         e.style.top = ny + "px";
     } else if(!x && !y) {
         // random position
         var nx = Math.random() * maxx;
         var ny = Math.random() * maxy;
+        if(ny < taskbarHeight) ny = taskbarHeight;
         e.style.left = nx + "px";
         e.style.top = ny + "px";
     } else {
@@ -179,6 +181,7 @@ function randomizeWindowPosition(id) {
 
     var x = Math.random() * maxx;
     var y = Math.random() * maxy;
+    if(y < taskbarHeight) y = taskbarHeight;
     w.style.left = x + "px";
     w.style.top = y + "px";
 }
@@ -317,6 +320,46 @@ function setScrollable(id, scrollable) {    // this only works for windows with 
         // TODO: remove scrollbar
         error("unimplemented remove scrollbar");
     }
+}
+
+/* taskbar and menu implementation */
+var taskbarHeight;
+
+function toggleMenu() {
+    if(document.getElementById("menu").style.display == "block") {
+        document.getElementById("menu").style.display = "none";
+    } else {
+        document.getElementById("menu").style.display = "block"
+    }
+}
+
+function createTaskbar() {
+    debug("createTaskbar()");
+
+    const taskbar = document.createElement("div")
+    taskbar.id = "taskbar";
+
+    const menuButton = document.createElement("button");
+    menuButton.innerHTML = "Menu";
+    menuButton.style.fontWeight = "bold";
+    menuButton.style.marginRight = "16px";
+
+    taskbar.appendChild(menuButton);
+
+    document.body.appendChild(taskbar);
+    taskbarHeight = taskbar.offsetHeight;
+
+    // menu
+    const menu = document.createElement("ul");
+    menu.id = "menu";
+    menu.style.top = taskbarHeight + 1 + "px";
+    menu.style.display = "none";
+
+    document.body.appendChild(menu);
+
+    menu.innerHTML = "<li>test</li><li>test 2</li>"
+
+    taskbar.onclick = function() { toggleMenu(); };
 }
 
 /* window body content manager */
@@ -468,6 +511,7 @@ function moveBackground(e) {
 }
 
 window.onload = function() {
+    // calculate boundaries for the heart and saturn background
     const heart = document.getElementById("heart");
     const saturn = document.getElementById("saturn");
 
@@ -480,6 +524,8 @@ window.onload = function() {
     saturnMinx = (window.innerWidth/2) - (saturn.offsetWidth);
     saturnMiny = saturn.offsetTop;
     saturnMaxy = (window.innerHeight/2) - (saturn.offsetHeight/2);
+
+    createTaskbar();
 
     window.onmouseup = function() {
         draggedWindow = null;
