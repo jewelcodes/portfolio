@@ -74,8 +74,6 @@ function handleDrag(e) {
 // set x or y to -1 for center, zero for random, else they are in pixels
 // set height to -1 for automatic height
 function createWindow(id, title, w, h, x, y) {
-    windowCount++;
-
     debug("createWindow('" + id + "', '" + title + "', " + w + ", " + h + ", " + x + ", " + y + ")");
 
     if(getWindow(id)) {
@@ -83,6 +81,8 @@ function createWindow(id, title, w, h, x, y) {
         showWindow(id);
         return;
     }
+
+    windowCount++;
 
     // window bare skeleton
     const e  = document.createElement("div");
