@@ -116,7 +116,7 @@ function mainWindow() {
         setActiveWindow("main");
         return;
     }
-    
+
     createWindow("main", "About", 40, -1, -1, -1);
     createImage("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
     createText("main", mainText);
@@ -128,8 +128,9 @@ async function appMain() {
     document.getElementById("heart").onclick = function() { showArt(); };
     document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
 
-    addMenuItem("About", mainWindow);
     addMenuItem("Blog", async function() { await openBlog(); });
+    addMenuItem("About", mainWindow);
+    addMenuItem("Art Credits", showArt);
 
     await openBlog();
     mainWindow();
