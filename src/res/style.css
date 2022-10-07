@@ -236,6 +236,7 @@ h3, h4, h5 {
 #menu {
     position: fixed;
     left: 4px;      /* top position will be accounted for later */
+    z-index: 9999990;   /* always on top */
     min-width: 18vw;
     background-color: #d1bac6;
     margin: 0px !important;
@@ -252,6 +253,9 @@ h3, h4, h5 {
     display: block;
     width: 100%;
     border-bottom: 1px solid #7d5a6b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #menu li:last-child {
@@ -271,6 +275,11 @@ h3, h4, h5 {
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
+    }
+
+    #menu {
+        min-width: 70vw !important;
+        max-width: 80vw !important;
     }
 }
 
