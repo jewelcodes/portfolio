@@ -92,6 +92,7 @@ p {
 
 .title {
     display: block;
+    height: 13pt;
     padding: 3px 6px 3px 6px;
     background-color: #d498b6;
     border-bottom: 2px solid #222;
@@ -104,9 +105,10 @@ p {
 }
 
 .title div {    /* title text container */
+    font-weight: bold;
     float: left;
     display: block;
-    width: calc(100% - 14pt - 3px);
+    width: calc(100% - 13pt - 3px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -115,8 +117,8 @@ p {
 .titleButton {
     text-align: right;
     display: inline-block;
-    width: 14pt;
-    height: 14pt;
+    width: 13pt;
+    height: 13pt;
 }
 
 .content {
