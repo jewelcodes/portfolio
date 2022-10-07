@@ -53,6 +53,7 @@ async function openBlog() {
     }
 
     createText("blog", blogMd);
+    setScrollable("blog", true);
     showWindow("blog");
 }
 

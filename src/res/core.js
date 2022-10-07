@@ -104,7 +104,6 @@ function createWindow(id, title, w, h, x, y) {
     // close icon, fontawesome-dependent
     const close = document.createElement("i");
     close.classList.add("titleButton");
-    close.classList.add("fa-sharp");
     close.classList.add("fa-solid");
     close.classList.add("fa-xmark");
     tContainer.appendChild(close);
@@ -284,6 +283,13 @@ function setScrollable(id, scrollable) {    // this only works for windows with 
         const sbc = document.createElement("div");
         sbc.classList.add("scrollbarContainer");
         sbc.style.height = "calc(" + content.style.height + " + 24px)";
+
+        // if the content is not large enough to scroll through just add a scrollbar container
+        if(content.scrollHeight <= content.offsetHeight) {
+            content.classList.add("contentScrollable");
+            w.appendChild(sbc);
+            return;
+        }
 
         const sb = document.createElement("div");
         sb.classList.add("scrollbar");
