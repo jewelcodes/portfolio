@@ -236,7 +236,7 @@ function updateScrollbarPosition(w) {
     var ratio = currentScroll/maxScroll;
 
     var y = ratio * sbc.offsetHeight;
-
+    if(y < 0) y = 0;
     sb.style.top = y + "px";
 }
 
