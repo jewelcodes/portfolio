@@ -10,6 +10,7 @@ function parseMd(md) {     // markdown to html
     var lineBreak = true;     // whether or not the last char was \n
     var listItem = false;
     var list = false;
+    var isImage = false;
 
     var headingLevel = 0;      // 0 = none, 1-5 for h1 - h5
 
@@ -71,22 +72,23 @@ function parseMd(md) {     // markdown to html
             if(isItalic) output += "<em>";
             else output += "</em>";
         } else if(md[i] == '[') {
-            // potential start of a link's text
+            // potential start of a link's text OR an image
             linkText = "";
             linkUrl = "";
 
-            i++;    // ksip opening
+            i++;    // skip opening
 
             for(; md[i] != ']' && i < md.length; i++) {
                 linkText += md[i];
             }
 
             if((i+1) >= md.length || md[i+1] != '(') {
-                // not a link
+                // not a link/image
+                if(!isImage) output += "!";
                 output += "[" + linkText + "]";
             } else {
-                // this is a link
-                debug("link text: " + linkText);
+                // this is a link/image
+                //debug("link text: " + linkText);
 
                 // now we copy the link's URL
                 i += 2;
@@ -94,14 +96,21 @@ function parseMd(md) {     // markdown to html
                     linkUrl += md[i];
                 }
 
-                debug("link url: " + linkUrl);
-
-                if(linkUrl[0] == 'b' && linkUrl[1] == 'p' && linkUrl[2] == ':') {
-                    // blog post
-                    output += "<a onclick=\"blogPost('" + linkUrl.substring(3) + "')\">" + linkText + "</a>";
+                //debug("link url: " + linkUrl);
+                if(!isImage) {
+                    // link
+                    if(linkUrl[0] == 'b' && linkUrl[1] == 'p' && linkUrl[2] == ':') {
+                        // blog post
+                        output += "<a onclick=\"blogPost('" + linkUrl.substring(3) + "')\">" + linkText + "</a>";
+                    } else {
+                        // normal link
+                        output += "<a target=\"_blank\" href=\"" + linkUrl + "\">" + linkText + "</a>";
+                    }
                 } else {
-                    // normal link
-                    output += "<a target=\"_blank\" href=\"" + linkUrl + "\">" + linkText + "</a>";
+                    // image
+                    output += "<div class='mdImageContainer'>";
+                    output += "<img src='" + linkUrl + "' alt='" + linkText + "'>";
+                    output += "</div>";
                 }
             }
         } else if(md[i] == '&') {
@@ -126,6 +135,13 @@ function parseMd(md) {     // markdown to html
             }
 
             output += "<h" + headingLevel + ">";
+        } else if(md[i] == '!') {   // potential image
+            if(md[i+1] == '[') {
+                isImage = true;
+            } else {
+                output += md[i];
+            }
+            lineBreak = false;
         } else {
             // normal character
             output += md[i];
