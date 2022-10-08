@@ -8,9 +8,10 @@ const artText = "\
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [ID 9664c4 on Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)";
 
 const mainText = "\
-    Hi, I'm Jewel (obviously an online alias) c:\n\n \
+    Hi, I'm Jewel (obviously an alias) c:\n\n \
     I'm a 20-year-old undergrad biotech student from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
-    I've had a passion for coding for as far back as I can remember and some of my work is showcased here.";
+    I've had a passion for coding for as far back as I can remember and some of my work is showcased here.\n\n \
+    This page is powered by an open-source custom UI framework and blogging system written from scratch [entirely in JavaScript](https://github.com/jewelcodes/portfolio/tree/master/src/res).";
 
 function showArt() {
     if(getWindow("art")) {
@@ -32,7 +33,7 @@ async function openBlog() {
         return;
     }
 
-    createWindow("blog", "Blog", 43, 35, 0, 0);
+    createWindow("blog", "Blog", 47, 35, 0, 0);
 
     // generate list of blog posts
     var blogMd = new String();
@@ -101,7 +102,7 @@ async function blogPost(id) {
 
     let post = await response.text();
 
-    createWindow("post_" + id, posts.posts[id].title, 40, 65, 0, 0);
+    createWindow("post_" + id, posts.posts[id].title, 48, 74, 0, 0);
 
     createText("post_" + id, "# " + posts.posts[id].title);
     createText("post_" + id, "**- " + timeString(posts.posts[id].time) + "**");
@@ -117,8 +118,8 @@ function mainWindow() {
         return;
     }
 
-    createWindow("main", "About", 40, -1, -1, -1);
-    createImage("main", "res/images/celeste.png", "Celeste", 30, 30, 2);
+    createWindow("main", "About", 44, -1, -1, -1);
+    createImage("main", "res/images/celeste.png", "Celeste", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
@@ -132,7 +133,7 @@ async function appMain() {
     addMenuItem("About", mainWindow);
     addMenuItem("Art Credits", showArt);
 
-    await openBlog();
+    //await openBlog();
     mainWindow();
 }
 
