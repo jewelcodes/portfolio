@@ -272,6 +272,34 @@ function handleScrollDrag(e) {
     content.scrollTop = Math.floor((y / maxy) * maxScroll);
 }
 
+function setScrollbarHeight(w) {
+    // determine scrollbar height
+    const content = w.children[1];
+    sb = w.children[2].children[0];
+
+    if(!sb) return;
+
+    var visible = content.offsetHeight/content.scrollHeight;
+    if(visible > 1) visible = 1;
+
+    var height = visible * content.offsetHeight;
+    if(height > content.offsetHeight) height = content.offsetHeight;
+    if(height < 24) height = 24;
+    sb.style.height = height + "px";
+}
+
+function updateScrollbars() {
+    // updates all scrollbars because there's no standard way to monitor
+    // element.scrollHeight, so we need to run this every interval :shrug:
+    const contents = document.getElementsByClassName("contentScrollable");
+    if(!contents.length) return;
+
+    for(var i = 0; i < contents.length; i++) {
+        let w = contents[i].parentNode;
+        setScrollbarHeight(w);
+    }
+}
+
 function setScrollable(id, scrollable) {    // this only works for windows with a preset height
     debug("setScrollable('" + id + "', " + scrollable + ")");
 
@@ -310,14 +338,7 @@ function setScrollable(id, scrollable) {    // this only works for windows with 
 
         content.classList.add("contentScrollable");
 
-        // determine scrollbar height
-        var visible = content.offsetHeight/content.scrollHeight;
-        if(visible > 1) visible = 1;
-
-        var height = visible * content.offsetHeight;
-        if(height > content.offsetHeight) height = content.offsetHeight;
-        if(height < 24) height = 24;
-        sb.style.height = height + "px";
+        setScrollbarHeight(w);
 
         // event handlers
         content.onscroll = function() { updateScrollbarPosition(w); };
@@ -563,6 +584,8 @@ window.onload = function() {
         handleScrollDrag(e);
         moveBackground(e);
     };
+
+    setInterval(function() { updateScrollbars(); }, 100);
 
     appMain();
 };
