@@ -357,13 +357,16 @@ var taskbarHeight;
 function toggleMenu() {
     if(document.getElementById("menu").style.display == "block") {
         document.getElementById("menu").style.display = "none";
+        document.getElementById("menuButton").classList.remove("buttonActive");
     } else {
-        document.getElementById("menu").style.display = "block"
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("menuButton").classList.add("buttonActive");
     }
 }
 
 function hideMenu() {
     document.getElementById("menu").style.display = "none";
+    document.getElementById("menuButton").classList.remove("buttonActive");
 }
 
 function addMenuItem(text, handler) {

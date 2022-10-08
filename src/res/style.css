@@ -163,7 +163,7 @@ button, input[type=button], input[type=submit] {
     padding: 4px 16px 4px 16px;
 }
 
-button:active, input[type=button]:active, input[type=submit]:active {
+button:active, input[type=button]:active, input[type=submit]:active, .buttonActive {
     border-color: #222 #7d5a6b #7d5a6b #222;
 }
 
