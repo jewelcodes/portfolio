@@ -110,7 +110,10 @@ function parseMd(md) {     // markdown to html
                     // image
                     output += "<div class='mdImageContainer'>";
                     output += "<img src='" + linkUrl + "' alt='" + linkText + "'>";
+                    output += "<br>";
+                    output += "<em>" + linkText + "</em>";
                     output += "</div>";
+                    isImage = false;
                 }
             }
         } else if(md[i] == '&') {
@@ -139,6 +142,7 @@ function parseMd(md) {     // markdown to html
             if(md[i+1] == '[') {
                 isImage = true;
             } else {
+                isImage = false;
                 output += md[i];
             }
             lineBreak = false;

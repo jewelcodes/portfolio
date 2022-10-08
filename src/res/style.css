@@ -200,7 +200,6 @@ img {
 
 .mdImageContainer img {
     border: none !important;
-    max-width: 100%;
     max-height: 40vh;
 }
 
@@ -276,7 +275,14 @@ h3, h4, h5 {
     background-color: #d498b6;
 }
 
-/* mobile rules */
+/* desktop only rules */
+@media screen and (min-width: 1280px), screen and (orientation: landscape) {
+    .mdImageContainer img {
+        max-width: 80%;
+    }
+}
+
+/* mobile only rules */
 @media screen and (max-width: 1279px), screen and (orientation: portrait) {
     .window {
         min-width: 90vw !important;
@@ -290,6 +296,10 @@ h3, h4, h5 {
     #menu {
         min-width: 70vw !important;
         max-width: 80vw !important;
+    }
+
+    .mdImageContainer img {
+        max-width: 100%;
     }
 }
 
