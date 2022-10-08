@@ -120,6 +120,10 @@ function createWindow(id, title, w, h, x, y) {
         draggedWindow = id;
     };
 
+    close.onclick = function() {    // close
+        destroyWindow(id);
+    }
+
     // window content
     const c = document.createElement("div");
     c.classList.add("content");
@@ -497,11 +501,11 @@ function createImage(id, url, alt, w, h, align) {
     i.src = url;
     i.alt = alt;
 
-    i.style.width = w + "%";
-    if(h) i.style.height = h + "%";
-
     c.appendChild(i);
     content.appendChild(c);
+
+    i.style.width = Math.floor((w/100) * i.parentNode.offsetWidth) + "px";
+    if(h) i.style.height = Math.floor((i.offsetWidth - 4) * (h/w)) + "px";
 }
 
 /* for the background heart and things */
