@@ -137,6 +137,7 @@ p {
     background-color: #ebe1d9;
     overflow-x: hidden;
     overflow-y: scroll;
+    overflow-wrap: break-word;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
