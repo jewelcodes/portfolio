@@ -102,10 +102,15 @@ async function blogPost(id) {
 
     let post = await response.text();
 
-    createWindow("post_" + id, posts.posts[id].title, 48, 74, 0, 0);
+    var i;
+    for(i = 0; i < posts.posts.length; i++) {
+        if(posts.posts[i].id == id) break;
+    }
 
-    createText("post_" + id, "# " + posts.posts[id].title);
-    createText("post_" + id, "**- " + timeString(posts.posts[id].time) + "**");
+    createWindow("post_" + id, posts.posts[i].title, 48, 74, 0, 0);
+
+    createText("post_" + id, "# " + posts.posts[i].title);
+    createText("post_" + id, "**- " + timeString(posts.posts[i].time) + "**");
 
     createText("post_" + id, post);
     setScrollable("post_" + id, true);
