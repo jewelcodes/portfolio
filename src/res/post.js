@@ -2,8 +2,38 @@
 /* epic portfolio website
    jewel, 2022 */
 
+var validateUploadCounter;
 function validateUpload(frame) {
+    createWindow("validateUpload", "File Uploader", 35, -1, -1, -1);
+    clearWindow("validateUpload");
+    createText("validateUpload", "Uploading file...");
+    showWindow("validateUpload");
 
+    validateUploadCounter = 0;
+    let interval = setInterval(function() {
+        if(frame.contentWindow.document.body.innerText) {
+            var ret = new String(frame.contentWindow.document.body.innerText.toString());
+            clearInterval(interval);
+            clearWindow("validateUpload");
+            if(ret.substring(0,2) == "ok") {
+                navigator.clipboard.writeText(ret.substring(3));
+                dialog("validateUpload", "File has been uploaded and its path has been copied to the clipboard.\n\n*" + ret.substring(3) + "*", "OK");
+            } else {
+                dialog("validateUpload", "An error occured while uploading.", "OK");
+            }
+
+            centerWindow("validateUpload");
+        }
+
+        validateUploadCounter++;
+        if(validateUploadCounter > 10) {    // up to 15 seconds
+            dialog("validateUpload", "Timed out while uploading; check your internet connection.", "OK");
+            centerWindow("validateUpload");
+            clearInterval(interval);
+        }
+    }, 500);
+
+    return true;
 }
 
 function openUploader() {
@@ -21,35 +51,37 @@ function openUploader() {
     showWindow("uploader");
 }
 
-var validateCounter;
+var validatePostCounter;
 function validatePost(frame) {
-    createWindow("validating", "Post Upload", 25, -1, -1, -1);
-    clearWindow("validating");
-    createText("validating", "Uploading post...");
-    showWindow("validating");
+    createWindow("validatePost", "Post Upload", 25, -1, -1, -1);
+    clearWindow("validatePost");
+    createText("validatePost", "Uploading post...");
+    showWindow("validatePost");
 
-    validateCounter = 0;
+    validatePostCounter = 0;
     let interval = setInterval(function() {
         if(frame.contentWindow.document.body.innerText) {
             var status = new String(frame.contentWindow.document.body.innerText.toString());
             clearInterval(interval);
-            clearWindow("validating");
+            clearWindow("validatePost");
             if(status.substring(0,2) == "ok") {
-                dialog("validating", "Post successful.", "OK");
+                dialog("validatePost", "Post successful.", "OK");
             } else {
-                dialog("validating", "An error occured while posting.", "OK");
+                dialog("validatePost", "An error occured while posting.", "OK");
             }
 
-            centerWindow("validating");
+            centerWindow("validatePost");
         }
 
-        validateCounter++;
-        if(validateCounter >= 10) {
-            dialog("validating", "Timed out while posting; check your internet connection.", "OK");
-            centerWindow("validating");
+        validatePostCounter++;
+        if(validatePostCounter >= 10) {     // up to 5 seconds
+            dialog("validatePost", "Timed out while posting; check your internet connection.", "OK");
+            centerWindow("validatePost");
             clearInterval(interval);
         }
     }, 500);
+
+    return true;
 }
 
 async function appMain() {
