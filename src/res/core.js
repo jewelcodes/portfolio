@@ -558,6 +558,7 @@ function createForm(winId, formId, formMethod, formAction, submitHandler) {
     f.action = formAction;
     f.autocomplete = "off";
     f.target = formId + "Frame";
+    f.enctype = "multipart/form-data";
     f.onsubmit = function() { submitHandler(frame); };
 
     content.appendChild(frame);
