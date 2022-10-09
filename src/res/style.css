@@ -254,6 +254,10 @@ h3, h4, h5 {
     padding: 1px;
 }
 
+#menuButton {
+    margin-right: 4px;
+}
+
 #menu {
     position: fixed;
     left: 1px;      /* top position will be accounted for later */
@@ -292,13 +296,40 @@ h3, h4, h5 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 1px;
+    margin-right: 4px;
     text-align: left !important;
     padding: 4px 8px 4px 8px !important;
 }
 
 #taskbar .buttonActive {
     font-weight: bold;
+}
+
+input[type=text], input[type=password], textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 8px;
+
+    font-family: agave, monospace;
+    font-size: 12pt;
+    line-height: 14pt;
+
+    border: 2px solid;
+    border-color: #222 #7d5a6b #7d5a6b #222;
+    background-color: #f0e6ef;
+}
+
+textarea {
+    height: 55vh;
+    resize: none;
+}
+
+form .buttonContainer {
+    text-align: right !important;
+}
+
+iframe {
+    display: none !important;
 }
 
 /* desktop only rules */

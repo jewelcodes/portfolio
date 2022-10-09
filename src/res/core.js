@@ -256,6 +256,18 @@ function destroyWindow(id) {
     windowCount--;
 }
 
+function clearWindow(id) {
+    debug("clearWindow('" + id + "')");
+
+    const w = document.getElementById(id);
+    if(!w) {
+        error("window '" + id + "' doesn't exist");
+        return;
+    }
+
+    w.children[1].innerHTML = "";
+}
+
 /* scrollbar implementation */
 var activeScrollbar = null;
 
@@ -423,7 +435,7 @@ function createTaskbar() {
     menuButton.id = "menuButton";
     menuButton.innerText = "Menu";
     menuButton.style.fontWeight = "bold";
-    menuButton.style.marginRight = "16px";
+    //menuButton.style.marginRight = "16px";
 
     taskbar.appendChild(menuButton);
 
@@ -525,6 +537,88 @@ function createOutlink(id, text, url) {    // creates a link that opens another 
     l.target = "_blank";    // new tab
 
     content.appendChild(l);
+}
+
+/* forms -- this is used in the uploader */
+function createForm(winId, formId, formMethod, formAction, submitHandler) {
+    const w = document.getElementById(winId);
+    if(!w) {
+        error("window '" + winId + "' doesn't exist");
+        return;
+    }
+
+    const content = w.children[1];
+
+    const frame = document.createElement("iframe");
+    frame.name = formId + "Frame";
+
+    const f = document.createElement("form");
+    f.id = formId;
+    f.method = formMethod;
+    f.action = formAction;
+    f.autocomplete = "off";
+    f.target = formId + "Frame";
+    f.onsubmit = function() { submitHandler(frame); };
+
+    content.appendChild(frame);
+    content.appendChild(f);
+}
+
+function createTextarea(id, name, label) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const l = document.createElement("label");
+    l.setAttributeNS(null, "for", name);
+    l.innerText = label;
+    f.appendChild(l);
+
+    const ta = document.createElement("textarea");
+    ta.name = name;
+    ta.id = name;
+    ta.spellcheck = false;
+    f.appendChild(ta);
+}
+
+function createTextbox(id, name, label) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const l = document.createElement("label");
+    l.setAttributeNS(null, "for", name);
+    l.innerText = label;
+    f.appendChild(l);
+
+    const tb = document.createElement("input");
+    tb.type = "text";
+    tb.name = name;
+    tb.id = name;
+    tb.spellcheck = false;
+    f.appendChild(tb);
+}
+
+function createSubmitButton(id, text) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const container = document.createElement("div");
+    container.classList.add("buttonContainer");
+
+    const button = document.createElement("input");
+    button.type = "submit";
+    button.value = text;
+
+    container.appendChild(button);
+    f.appendChild(container);
 }
 
 // creates an image
