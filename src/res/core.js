@@ -730,6 +730,8 @@ function moveBackground(e) {
 }
 
 window.onload = function() {
+    document.body.classList.add("defaultTheme");
+
     // calculate boundaries for the heart and saturn background
     const heart = document.getElementById("heart");
     const saturn = document.getElementById("saturn");

@@ -19,12 +19,53 @@
     font-weight: bold;
 }
 
-/*@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;700&display=swap');*/
-
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap');
-
 * {
     outline: none !important;
+}
+
+.defaultTheme {
+    --text: #111;
+    /*--window-border: #222;*/
+    --window-border: #231c33;
+    --title-inactive-bg: #a697c7;
+    --title-inactive-fg: #373347;
+    --title-active-bg: #7f5dc7;
+    --title-active-fg: #111;
+    --window-body: #d9d1e3;
+    --button-bg: #d0c3e0;
+    --button-fg: #111;
+    --object-bright: #9485a8;
+    --object-dark: #443b4f;
+    --link: #8763c2;
+    --scrollbar-container: #9c94a8;
+    --taskbar-border: #443b4f;
+    --taskbar-bg: #cabade;
+    --textbox-bg: #e9e6f0;
+    --textbox-fg: #111;
+    --upload-icon: #8763c2;
+    --background-tint: rgba(38,29,59,0.3);
+}
+
+.defaultTheme2 {
+    --text: #111;
+    --window-border: #222;
+    --title-inactive-bg: #d498b6;
+    --title-inactive-fg: #47333d;
+    --title-active-bg: #d9669f;
+    --title-active-fg: #111;
+    --window-body: #ebe1d9;
+    --button-bg: #d1bac6;
+    --button-fg: #111;
+    --object-bright: #7d5a6b;
+    --object-dark: #222;
+    --link: #ab4f7b;
+    --scrollbar-container: #a8949f;
+    --taskbar-border: #7d5a6b;
+    --taskbar-bg: #d1bac6;
+    --textbox-bg: #f0e6ef;
+    --textbox-fg: #111;
+    --upload-icon: #751d47;
+    --background-tint: rgba(0,0,0,0,3);
 }
 
 body {
@@ -41,10 +82,11 @@ body {
     user-select: none;
     margin: 0px;
     padding: 0px;
-    color: #111;
-    /*background: linear-gradient(to right, #dbadcc, #9fa6f5);*/
-    /*background: linear-gradient(to right, #b58ecc, #81abcc) #9c9ccc;*/
-    background: linear-gradient(to right, #b06b98, #8b6bb0);
+    color: var(--text);
+    background-image: linear-gradient(var(--background-tint), var(--background-tint)), url("/res/images/bg2.gif");
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 p {
@@ -53,6 +95,7 @@ p {
 }
 
 #heart {
+    display: none;
     position: fixed;
     z-index: 1;    /* actual windows will never go negative, keep this as the lowest item */
     left: 9vw;
@@ -67,6 +110,7 @@ p {
 }
 
 #saturn {
+    display: none;
     position: fixed;
     z-index: 2;
     right: 9vw;
@@ -86,25 +130,25 @@ p {
     border-left: 3px solid #5d3420;
     border-right: 5px solid #5d3420;
     border-bottom: 5px solid #5d3420;*/
-    border: 1px solid #222;
+    border: 1px solid var(--window-border);
     padding: 1px;
-    background-color: #222;
+    background-color: var(--window-border);
     /*border-radius: 4px;*/
-    box-shadow: 4px 4px 0 0.1px #222;
+    box-shadow: 4px 4px 0 0.1px var(--window-border);
 }
 
 .title {
     display: block;
     height: 13pt;
     padding: 3px 6px 3px 6px;
-    background-color: #d498b6;
-    border-bottom: 2px solid #222;
-    color: #47333d;
+    background-color: var(--title-inactive-bg);
+    border-bottom: 2px solid var(--window-border);
+    color: var(--title-inactive-fg);
 }
 
 .titleActive {
-    background-color: #d9669f !important;
-    color: #111 !important;
+    background-color: var(--title-active-bg) !important;
+    color: var(--title-active-fg) !important;
 }
 
 .title div {    /* title text container */
@@ -134,7 +178,7 @@ p {
     width: calc(100% - 24px);     /* default */
     padding: 12px;
     /*background-color: #f6eada;*/
-    background-color: #ebe1d9;
+    background-color: var(--window-body);
     overflow-x: hidden;
     overflow-y: scroll;
     overflow-wrap: break-word;
@@ -162,17 +206,17 @@ button, input[type=button], input[type=submit] {
     text-align: center;
     vertical-align: middle;
 
-    background-color: #d1bac6;
-    color: #111;
+    background-color: var(--button-bg);
+    color: var(--button-fg);
     border: 2px solid;
-    border-color: #7d5a6b #222 #222 #7d5a6b;
+    border-color: var(--object-bright) var(--object-dark) var(--object-dark) var(--object-bright);
     border-radius: 0px;     /* for safari */
     margin: 0px;
     padding: 4px 16px 4px 16px;
 }
 
 button:active, input[type=button]:active, input[type=submit]:active, .buttonActive {
-    border-color: #222 #7d5a6b #7d5a6b #222;
+    border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
 }
 
 .content ul {
@@ -187,19 +231,21 @@ button:active, input[type=button]:active, input[type=submit]:active, .buttonActi
 
 .content li::before {
     content: '\2022';
+    font-weight: bold;
     margin-right: 8px;
 }
 
 a {
     cursor: pointer !important;
     text-decoration: underline;
-    color: #ab4f7b;
+    color: var(--link);
 }
 
 img {
     display: inline-block;
-    border: 2px solid #222;
-    background-color: #222;
+    border: 2px solid var(--window-border);
+    background-color: var(--window-border);
+    image-rendering: auto;
 }
 
 .mdImageContainer {
@@ -227,7 +273,7 @@ h3, h4, h5 {
     position: relative;
     left: calc(100% - 20px);
     width: 20px;    /* height will be calculated in js */
-    background-color: #a8949f;
+    background-color: var(--scrollbar-container);
 }
 
 .scrollbar {
@@ -235,9 +281,9 @@ h3, h4, h5 {
     box-sizing: border-box;
     width: 20px;
     min-height: 24px;
-    background-color: #d1bac6;
+    background-color: var(--button-bg);
     border: 2px solid;
-    border-color: #7d5a6b #222 #222 #7d5a6b;
+    border-color: var(--object-bright) var(--object-dark) var(--object-dark) var(--object-bright);
 }
 
 #taskbar {
@@ -247,12 +293,12 @@ h3, h4, h5 {
     /*border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;*/
 
-    border-bottom: 2px solid #7d5a6b;
+    border-bottom: 2px solid var(--taskbar-border);
     top: 0px;
     left: 0px;
     z-index: 999999;    /* always on top */
     width: 100vw;
-    background-color: #d1bac6;
+    background-color: var(--taskbar-bg);
     padding: 1px;
 }
 
@@ -265,11 +311,11 @@ h3, h4, h5 {
     left: 1px;      /* top position will be accounted for later */
     z-index: 9999990;   /* always on top */
     min-width: 18vw;
-    background-color: #d1bac6;
+    background-color: var(--button-bg);
     margin: 0px !important;
     padding: 0px !important;
     border: 2px solid;
-    border-color: #7d5a6b #222 #222 #7d5a6b;
+    border-color: var(--object-bright) var(--object-dark) var(--object-dark) var(--object-bright);
 }
 
 #menu li {
@@ -279,7 +325,7 @@ h3, h4, h5 {
     padding: 8px 16px 8px 16px !important;
     display: block;
     width: 100%;
-    border-bottom: 1px solid #7d5a6b;
+    border-bottom: 1px solid var(--taskbar-border);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -290,7 +336,7 @@ h3, h4, h5 {
 }
 
 #menu li:hover {
-    background-color: #d498b6;
+    background-color: var(--title-inactive-bg);
 }
 
 .taskbarButton {
@@ -317,9 +363,10 @@ input[type=text], input[type=password], textarea {
     line-height: 14pt;
 
     border: 2px solid;
-    border-color: #222 #7d5a6b #7d5a6b #222;
+    border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
     border-radius: 0px;     /* for safari */
-    background-color: #f0e6ef;
+    background-color: var(--textbox-bg);
+    color: var(--textbox-fg);
 }
 
 textarea {
@@ -347,7 +394,7 @@ input[type=file] {
 .uploadIcon {
     font-size: 30pt;
     margin: 8px;
-    color: #751d47;
+    color: var(--upload-icon);
 }
 
 /* desktop only rules */
