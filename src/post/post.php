@@ -8,6 +8,11 @@ error_reporting(0);
 // this returns "ok" if it worked and "no" if it didn't
 // it expects POST data: postTitle and postBody
 
+if(!$_POST["postTitle"] || !$_POST["postBody"]) {
+    echo("no");
+    return;
+}
+
 // first come up with an index for the new post
 
 $f = file_get_contents("../res/posts/posts.json");
