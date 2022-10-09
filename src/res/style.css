@@ -296,7 +296,7 @@ h3, h4, h5 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 4px;
+    margin-right: 2px;
     text-align: left !important;
     padding: 4px 8px 4px 8px !important;
 }
