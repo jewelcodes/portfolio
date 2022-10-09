@@ -584,7 +584,7 @@ function createTextarea(id, name, label) {
     f.appendChild(ta);
 }
 
-function createTextbox(id, name, label) {
+function createTextbox(id, name, label, required) {
     const f = document.getElementById(id);
     if(!f) {
         error("form '" + id + "' doesn't exist");
@@ -601,7 +601,49 @@ function createTextbox(id, name, label) {
     tb.name = name;
     tb.id = name;
     tb.spellcheck = false;
+    if(required) tb.required = true;
     f.appendChild(tb);
+}
+
+function createFileUploader(id, name, label, mimeTypes, multiple) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const l = document.createElement("label");
+    l.setAttributeNS(null, "for", name);
+    l.innerText = label;
+
+    const fu = document.createElement("input");
+    fu.type = "file";
+    fu.name = name;
+    fu.id = name;
+    if(mimeTypes) fu.accept = mimeTypes;
+    if(multiple) fu.multiple = true;
+
+    const iconContainer = document.createElement("div");
+    iconContainer.style.textAlign = "center";
+
+    const icon = document.createElement("i");
+    icon.classList.add("uploadIcon");
+    icon.classList.add("fa-solid");
+    icon.classList.add("fa-cloud-arrow-up");
+    iconContainer.appendChild(icon);
+
+    const fileName = document.createElement("div");
+    fileName.classList.add("fileName");
+    fileName.innerText = "No file selected";
+
+    fu.onchange = function() {
+        fileName.innerText = fu.files[0].name;
+    }
+
+    l.appendChild(fu);
+    l.appendChild(iconContainer);
+    l.appendChild(fileName);
+    f.appendChild(l);
 }
 
 function createSubmitButton(id, text) {

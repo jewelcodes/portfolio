@@ -2,13 +2,29 @@
 /* epic portfolio website
    jewel, 2022 */
 
-function openUploader() {
+function validateUpload(frame) {
 
+}
+
+function openUploader() {
+    if(getWindow("uploader")) {
+        setActiveWindow("uploader");
+        return;
+    }
+
+    createWindow("uploader", "File Uploader", 30, -1, 0, 0);
+    createForm("uploader", "uploadForm", "POST", "/post/upload.php", function(frame) { validateUpload(frame); });
+    createFileUploader("uploadForm", "file", "", null, false);
+    createSubmitButton("uploadForm", "Upload");
+
+    randomizeWindowPosition("uploader");
+    showWindow("uploader");
 }
 
 var validateCounter;
 function validatePost(frame) {
     createWindow("validating", "Post Upload", 25, -1, -1, -1);
+    clearWindow("validating");
     createText("validating", "Uploading post...");
     showWindow("validating");
 
@@ -37,11 +53,11 @@ function validatePost(frame) {
 }
 
 async function appMain() {
-    addMenuItem("Upload files", function() { openUploader(); });
+    addMenuItem("File Uploader", function() { openUploader(); });
 
     createWindow("post", "Create Post", 45, -1, 64, 64);
     createForm("post", "postForm", "POST", "/post/post.php", function(frame) { validatePost(frame); });
-    createTextbox("postForm", "postTitle", "Post Title:");
+    createTextbox("postForm", "postTitle", "Post Title:", true);
     createTextarea("postForm", "postBody", "Post Body (Markdown):");
     createSubmitButton("postForm", "Post");
 

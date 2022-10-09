@@ -332,6 +332,21 @@ iframe {
     display: none !important;
 }
 
+input[type=file] {
+    display: none;
+}
+
+.fileName {
+    text-align: center;
+    font-weight: bold;
+}
+
+.uploadIcon {
+    font-size: 30pt;
+    margin: 8px;
+    color: #751d47;
+}
+
 /* desktop only rules */
 @media screen and (min-width: 1280px), screen and (orientation: landscape) {
     .mdImageContainer img {
