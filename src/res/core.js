@@ -43,6 +43,15 @@ function setActiveWindow(id) {
             }
         }
     }
+
+    const taskbarButtons = document.getElementsByClassName("taskbarButton");
+    for(var i = 0; i < taskbarButtons.length; i++) {
+        if(taskbarButtons[i].id == id + "_button") {
+            taskbarButtons[i].classList.add("buttonActive");
+        } else {
+            taskbarButtons[i].classList.remove("buttonActive");
+        }
+    }
 }
 
 function handleDrag(e) {
@@ -159,6 +168,15 @@ function createWindow(id, title, w, h, x, y) {
         e.style.left = x + "px";
         e.style.top = y + "px";
     }
+
+    // add the window to the taskbar
+    const button = document.createElement("button");
+    button.id = id + "_button";
+    button.classList.add("taskbarButton");
+    button.innerText = title;
+    button.onclick = function() { toggleWindow(id); };
+
+    document.getElementById("taskbar").appendChild(button);
 }
 
 function showWindow(id) {
@@ -171,6 +189,18 @@ function showWindow(id) {
 function hideWindow(id) {
     debug("hideWindow('" + id + "')");
     document.getElementById(id).style.visibility = "hidden";
+    document.getElementById(id).children[0].classList.remove("titleActive");
+    setActiveWindow(null);
+}
+
+function toggleWindow(id) {
+    debug("toggleWindow('" + id + "')");
+
+    if(document.getElementById(id).children[0].classList.contains("titleActive")) {
+        hideWindow(id);
+    } else {
+        showWindow(id);
+    }
 }
 
 function randomizeWindowPosition(id) {
@@ -221,6 +251,7 @@ function destroyWindow(id) {
     }
 
     document.getElementById(id).remove();
+    document.getElementById(id + "_button").remove();
 
     windowCount--;
 }
@@ -402,7 +433,7 @@ function createTaskbar() {
     // menu
     const menu = document.createElement("ul");
     menu.id = "menu";
-    menu.style.top = taskbarHeight + 1 + "px";
+    menu.style.top = taskbarHeight + "px";
     menu.style.display = "none";
 
     document.body.appendChild(menu);

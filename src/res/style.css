@@ -19,6 +19,10 @@
     font-weight: bold;
 }
 
+/*@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@400;700&display=swap');*/
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap');
+
 * {
     outline: none !important;
 }
@@ -38,10 +42,9 @@ body {
     margin: 0px;
     padding: 0px;
     color: #111;
-    /*background: linear-gradient(to right, #c0bbff, #f8ceda) #e2c7e6;*/
-    /*background: linear-gradient(to right, #d6a9db, #a299cc);*/
     /*background: linear-gradient(to right, #dbadcc, #9fa6f5);*/
-    background: linear-gradient(to right, #b58ecc, #81abcc) #9c9ccc;
+    /*background: linear-gradient(to right, #b58ecc, #81abcc) #9c9ccc;*/
+    background: linear-gradient(to right, #b06b98, #8b6bb0);
 }
 
 p {
@@ -105,6 +108,7 @@ p {
 }
 
 .title div {    /* title text container */
+    text-align: center;
     font-weight: bold;
     float: left;
     display: block;
@@ -154,6 +158,8 @@ button, input[type=button], input[type=submit] {
     font-family: agave, monospace;
     font-size: 12pt;
     line-height: 14pt;
+    text-align: center;
+    vertical-align: middle;
 
     background-color: #d1bac6;
     color: #111;
@@ -234,17 +240,23 @@ h3, h4, h5 {
 
 #taskbar {
     position: fixed;
+    box-sizing: border-box;
+    overflow: hidden !important;
+    /*border: 2px solid;
+    border-color: #7d5a6b #222 #222 #7d5a6b;*/
+
+    border-bottom: 2px solid #7d5a6b;
     top: 0px;
     left: 0px;
     z-index: 999999;    /* always on top */
     width: 100vw;
     background-color: #d1bac6;
-    padding: 0px 4px 0px 4px;
+    padding: 1px;
 }
 
 #menu {
     position: fixed;
-    left: 4px;      /* top position will be accounted for later */
+    left: 1px;      /* top position will be accounted for later */
     z-index: 9999990;   /* always on top */
     min-width: 18vw;
     background-color: #d1bac6;
@@ -275,6 +287,20 @@ h3, h4, h5 {
     background-color: #d498b6;
 }
 
+.taskbarButton {
+    width: 15vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 1px;
+    text-align: left !important;
+    padding: 4px 8px 4px 8px !important;
+}
+
+#taskbar .buttonActive {
+    font-weight: bold;
+}
+
 /* desktop only rules */
 @media screen and (min-width: 1280px), screen and (orientation: landscape) {
     .mdImageContainer img {
@@ -300,6 +326,10 @@ h3, h4, h5 {
 
     .mdImageContainer img {
         max-width: 100%;
+    }
+
+    .taskbarButton {
+        display: none !important;
     }
 }
 
