@@ -16,7 +16,10 @@ function validateUpload(frame) {
             clearInterval(interval);
             clearWindow("validateUpload");
             if(ret.substring(0,2) == "ok") {
-                navigator.clipboard.writeText(ret.substring(3));
+                if(navigator.clipboard) {
+                    navigator.clipboard.writeText(ret.substring(3));
+                }
+                
                 dialog("validateUpload", "File has been uploaded and its path has been copied to the clipboard.\n\n*" + ret.substring(3) + "*", "OK");
             } else {
                 dialog("validateUpload", "An error occured while uploading.", "OK");
