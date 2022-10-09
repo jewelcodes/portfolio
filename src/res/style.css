@@ -166,6 +166,7 @@ button, input[type=button], input[type=submit] {
     color: #111;
     border: 2px solid;
     border-color: #7d5a6b #222 #222 #7d5a6b;
+    border-radius: 0px;     /* for safari */
     margin: 0px;
     padding: 4px 16px 4px 16px;
 }
@@ -317,6 +318,7 @@ input[type=text], input[type=password], textarea {
 
     border: 2px solid;
     border-color: #222 #7d5a6b #7d5a6b #222;
+    border-radius: 0px;     /* for safari */
     background-color: #f0e6ef;
 }
 
