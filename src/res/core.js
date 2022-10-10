@@ -715,10 +715,11 @@ function createDesktopIcon(icon, name, handler) {
     if(!desktop) {
         desktop = document.createElement("div");
         desktop.id = "desktop";
+        desktop.onclick = function() { hideMenu(); };
         document.body.appendChild(desktop);
     }
 
-    // each slot is a 96x96 area with a 16px margin everywhere
+    // each slot is a square area with a 20px margin everywhere
     const iconCount = desktop.children.length;
     const minx = 32;
     const miny = 32 + taskbarHeight;
