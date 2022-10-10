@@ -3,8 +3,8 @@
    jewel, 2022 */
 
 const artText = "\
-    * Cat background: [Sarah Cunningham](https://cutewallpaper.org/28/cool-pixel-wallpaper/rog-wallpaper-design-on-behance-cool-pixel-art-pixel-art-landscape-pixel-art-design.html)\n\
-    * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [ID 9664c4 on Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)";
+    * Cat background: [Pixel Jeff](https://www.behance.net/gallery/103154127/SUDIO) on Behance\n\
+    * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [ID 9664c4](http://pixelartmaker.com/art/b2812518a5adf71) on Pixel Art Maker";
 
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
