@@ -702,9 +702,8 @@ function createImage(id, url, alt, w, h, align) {
 
 /* desktop icon implementation */
 const desktopIconFolder = 0;
-const desktopIconFile = 1;
-const desktopIconGear = 2;
-const desktopIconGitHub = 3;
+const desktopIconGear = 1;
+const desktopIconGitHub = 2;
 
 const desktopIconContainerSize = 128;
 const desktopIconMargin = 20;
@@ -747,23 +746,25 @@ function createDesktopIcon(icon, name, handler) {
 
     // open on single click for mobile, double click for desktop to avoid
     // double tapping on mobile to prevent accidental zoom
-    if(!isMobileDevice) iconContainer.ondblclick = handler;
-    else iconContainer.onclick = handler;
+    if(!isMobileDevice) iconContainer.ondblclick = function() {
+        iconContainer.blur();
+        handler();
+    }; else iconContainer.onclick = function() {
+        iconContainer.blur();
+        handler();
+    };
 
     const i = document.createElement("i");
 
     switch(icon) {
     case desktopIconFolder:
-        i.classList.add("fa-regular");
-        i.classList.add("fa-folder-open");
+        i.classList.add("folderIcon");
         break;
     case desktopIconGear:
-        i.classList.add("fa-solid");
-        i.classList.add("fa-gear");
+        i.classList.add("gearIcon");
         break;
     case desktopIconGitHub:
-        i.classList.add("fa-brands");
-        i.classList.add("fa-github");
+        i.classList.add("githubIcon");
         break;
     default:
         error("undefined icon type ID " + icon);

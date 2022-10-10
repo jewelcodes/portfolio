@@ -10,12 +10,12 @@
 
 @font-face {
     font-family: agave;
-    src: url('fonts/agave-regular.ttf');
+    src: url("/res/fonts/agave-regular.ttf");
 }
 
 @font-face {
     font-family: agave;
-    src: url('fonts/agave-bold.ttf');
+    src: url("/res/fonts/agave-bold.ttf");
     font-weight: bold;
 }
 
@@ -44,10 +44,10 @@
     --upload-icon: #7f5dc7;
     --background-tint: rgba(38,29,59,0.3);
     --desktop-icon-container-inactive: rgba(0,0,0,0);
-    --desktop-icon-container-active: rgba(0,0,0,0.6);
+    --desktop-icon-container-active: rgba(29,22,38,0.7);
     --desktop-icon: #a697c7;
     --desktop-icon-text: #e9e6f0;
-    --desktop-icon-text-bg: rgba(0,0,0,0.8);
+    --desktop-icon-text-bg: rgba(29,22,38,0.8);
 }
 
 .defaultTheme2 {
@@ -314,6 +314,7 @@ h3, h4, h5 {
 
 #menuButton {
     margin-right: 4px;
+    font-size: 105%;
 }
 
 #menu {
@@ -357,6 +358,7 @@ h3, h4, h5 {
     margin-right: 2px;
     text-align: left !important;
     padding: 4px 8px 4px 8px !important;
+    font-size: 92%;
 }
 
 #taskbar .buttonActive {
@@ -431,13 +433,16 @@ input[type=file] {
     width: 128px;
     height: 128px;
     padding: 16px;
-    border-radius: 5%;
     text-align: center;
 }
 
 .desktopIconContainer i {
     color: var(--desktop-icon);
     font-size: 72px;
+    position: absolute;
+    top: 8px;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px - 14pt);
     display: block;
 }
 
@@ -448,15 +453,37 @@ input[type=file] {
     transform: translateX(-50%);
     color: var(--desktop-icon-text);
     background-color: var(--desktop-icon-text-bg);
-    border-radius: 5%;
+    /*border-radius: 5%;*/
     padding: 2px 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 90%;
 }
 
 .desktopIconContainer:focus {
     background-color: var(--desktop-icon-container-active);
+}
+
+.folderIcon {
+    background-image: url("/res/images/folder.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gearIcon {
+    background-image: url("/res/images/gear.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.githubIcon {
+    background-image: url("/res/images/github.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* desktop only rules */
