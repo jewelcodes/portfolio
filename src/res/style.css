@@ -43,6 +43,11 @@
     --textbox-fg: #111;
     --upload-icon: #7f5dc7;
     --background-tint: rgba(38,29,59,0.3);
+    --desktop-icon-container-inactive: rgba(0,0,0,0);
+    --desktop-icon-container-active: rgba(0,0,0,0.6);
+    --desktop-icon: #a697c7;
+    --desktop-icon-text: #e9e6f0;
+    --desktop-icon-text-bg: rgba(0,0,0,0.8);
 }
 
 .defaultTheme2 {
@@ -64,7 +69,7 @@
     --textbox-bg: #f0e6ef;
     --textbox-fg: #111;
     --upload-icon: #751d47;
-    --background-tint: rgba(0,0,0,0,3);
+    --background-tint: rgba(0,0,0,0.3);
 }
 
 body {
@@ -96,7 +101,7 @@ p {
 #heart {
     display: none;
     position: fixed;
-    z-index: 1;    /* actual windows will never go negative, keep this as the lowest item */
+    z-index: -1;    /* actual windows will never go negative, keep this as the lowest item */
     left: 9vw;
     bottom: 11vh;
     width: 9vw;
@@ -111,7 +116,7 @@ p {
 #saturn {
     display: none;
     position: fixed;
-    z-index: 2;
+    z-index: -2;
     right: 9vw;
     top: 15vh;
     width: 21vw;
@@ -408,6 +413,50 @@ input[type=file] {
     font-size: 30pt;
     margin: 8px;
     color: var(--upload-icon);
+}
+
+#desktop {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.desktopIconContainer {
+    box-sizing: border-box;
+    position: absolute;
+    background-color: var(--desktop-icon-container-inactive);
+    width: 128px;
+    height: 128px;
+    padding: 16px;
+    border-radius: 5%;
+    text-align: center;
+}
+
+.desktopIconContainer i {
+    color: var(--desktop-icon);
+    font-size: 72px;
+    display: block;
+}
+
+.desktopIconContainer span {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--desktop-icon-text);
+    background-color: var(--desktop-icon-text-bg);
+    border-radius: 5%;
+    padding: 2px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.desktopIconContainer:focus {
+    background-color: var(--desktop-icon-container-active);
 }
 
 /* desktop only rules */

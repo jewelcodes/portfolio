@@ -700,6 +700,87 @@ function createImage(id, url, alt, w, h, align) {
     if(h) i.style.height = Math.floor((i.offsetWidth - 4) * (h/w)) + "px";
 }
 
+/* desktop icon implementation */
+const desktopIconFolder = 0;
+const desktopIconFile = 1;
+const desktopIconGear = 2;
+const desktopIconGitHub = 3;
+
+const desktopIconContainerSize = 128;
+const desktopIconMargin = 20;
+
+function createDesktopIcon(icon, name, handler) {
+    debug("createDesktopIcon(" + icon + ", '" + name + "', " + handler + ")");
+
+    let desktop = document.getElementById("desktop");
+    if(!desktop) {
+        desktop = document.createElement("div");
+        desktop.id = "desktop";
+        document.body.appendChild(desktop);
+    }
+
+    // each slot is a 96x96 area with a 16px margin everywhere
+    const iconCount = desktop.children.length;
+    const minx = 32;
+    const miny = 32 + taskbarHeight;
+    const maxx = window.innerWidth - (desktopIconContainerSize+desktopIconMargin);
+    const maxy = window.innerHeight - (desktopIconContainerSize+desktopIconMargin);
+
+    let y = miny + ((desktopIconContainerSize+desktopIconMargin)*iconCount);
+    let x = minx;
+
+    while(y >= maxy) {
+        y -= maxy;
+        if(y < miny) y = miny;
+        x += desktopIconContainerSize+desktopIconMargin;
+        if(x >= maxx) {
+            error("no more space to create desktop icon");
+            return;
+        }
+    }
+
+    const iconContainer = document.createElement("div");
+    iconContainer.classList.add("desktopIconContainer");
+    iconContainer.style.top = y + "px";
+    iconContainer.style.left = x + "px";
+    iconContainer.tabIndex = "-1";  // focusable
+
+    // open on single click for mobile, double click for desktop to avoid
+    // double tapping on mobile to prevent accidental zoom
+    if(!isMobileDevice) iconContainer.ondblclick = handler;
+    else iconContainer.onclick = handler;
+
+    const i = document.createElement("i");
+
+    switch(icon) {
+    case desktopIconFolder:
+        i.classList.add("fa-regular");
+        i.classList.add("fa-folder-open");
+        break;
+    case desktopIconGear:
+        i.classList.add("fa-solid");
+        i.classList.add("fa-gear");
+        break;
+    case desktopIconGitHub:
+        i.classList.add("fa-brands");
+        i.classList.add("fa-github");
+        break;
+    default:
+        error("undefined icon type ID " + icon);
+        i.remove();
+        iconContainer.remove();
+        return;
+    }
+
+    iconContainer.appendChild(i);
+
+    const t = document.createElement("span");
+    t.innerText = name;
+    iconContainer.appendChild(t);
+
+    desktop.appendChild(iconContainer);
+}
+
 /* for the background heart and things */
 var heartMinx, heartMiny, heartMaxx, heartMaxy;
 var saturnMinx, saturnMiny, saturnMaxx, saturnMaxy;
@@ -729,8 +810,18 @@ function moveBackground(e) {
     saturn.style.top = ny + "px";
 }
 
+var isMobileDevice = false;
+
 window.onload = function() {
     document.body.classList.add("defaultTheme");
+
+    // detect mobile devices
+    let result = navigator.userAgent.search("Android");
+    if(result > 0) isMobileDevice = true;
+    result = navigator.userAgent.search("iPhone");
+    if(result > 0) isMobileDevice = true;
+
+    debug("mobile device: " + isMobileDevice);
 
     // calculate boundaries for the heart and saturn background
     const heart = document.getElementById("heart");

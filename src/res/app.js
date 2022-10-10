@@ -130,12 +130,16 @@ function mainWindow() {
 }
 
 async function appMain() {
-    document.getElementById("heart").onclick = function() { showArt(); };
-    document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
+    //document.getElementById("heart").onclick = function() { showArt(); };
+    //document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
 
     addMenuItem("Blog", async function() { await openBlog(); });
     addMenuItem("About", mainWindow);
     addMenuItem("Art Credits", showArt);
+
+    createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
+    createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
+    createDesktopIcon(desktopIconGitHub, "Source Code", function() { window.open("https://github.com/jewelcodes/portfolio", "_blank"); });
 
     //await openBlog();
     mainWindow();
