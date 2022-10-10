@@ -312,9 +312,25 @@ h3, h4, h5 {
     padding: 1px;
 }
 
+#taskbar div {
+    display: inline-block;
+    width: auto;
+}
+
 #menuButton {
     margin-right: 4px;
     font-size: 105%;
+}
+
+#clock {
+    float: right;
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+    border: 2px solid;
+    border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
+    margin: 0px 1px 0px 0px;
+    padding: 4px 8px 4px 8px;
+    font-size: 92%;
 }
 
 #menu {

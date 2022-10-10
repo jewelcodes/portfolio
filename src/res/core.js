@@ -171,12 +171,13 @@ function createWindow(id, title, w, h, x, y) {
 
     // add the window to the taskbar
     const button = document.createElement("button");
+    button.type = "button";
     button.id = id + "_button";
     button.classList.add("taskbarButton");
     button.innerText = title;
     button.onclick = function() { toggleWindow(id); };
 
-    document.getElementById("taskbar").appendChild(button);
+    document.getElementById("taskbar").children[1].appendChild(button);
 }
 
 function showWindow(id) {
@@ -432,6 +433,7 @@ function createTaskbar() {
     taskbar.id = "taskbar";
 
     const menuButton = document.createElement("button");
+    menuButton.type = "button";
     menuButton.id = "menuButton";
     menuButton.innerText = "Menu";
     menuButton.style.fontWeight = "bold";
@@ -454,6 +456,16 @@ function createTaskbar() {
 
     menuButton.onclick = function() { toggleMenu(); };
     //menuButton.onblur = function() { hideMenu(); };
+
+    // button container
+    const container = document.createElement("div");
+    taskbar.appendChild(container);
+
+    // clock
+    const clock = document.createElement("span");
+    clock.id = "clock";
+    taskbar.appendChild(clock);
+    updateClock();
 }
 
 /* window body content manager */
@@ -473,6 +485,7 @@ function dialog(id, text, buttonText) {    // creates a standard dialog with tex
     container.classList.add("buttonContainer");
 
     const button = document.createElement("button");
+    button.type = "button";
     button.innerText = buttonText;
 
     button.onclick = function() {
@@ -783,6 +796,42 @@ function createDesktopIcon(icon, name, handler) {
     desktop.appendChild(iconContainer);
 }
 
+/* clock */
+var clockCounter = 0;
+function updateClock() {
+    let date = new Date();
+    var h, m, colon, ampm;
+
+    h = date.getHours();
+    m = date.getMinutes();
+    if(h > 12) {
+        ampm = "PM";
+        h -= 12;
+    } else {
+        ampm = "AM";
+    }
+
+    if(!h) {
+        h = 12;
+    }
+
+    clockCounter++;
+    if(clockCounter & 1) {
+        colon = ":";
+    } else {
+        colon = " ";
+    }
+
+    var hh, mm;
+    if(h < 10) hh = "0" + h;
+    else hh = h;
+
+    if(m < 10) mm = "0" + m;
+    else mm = m;
+
+    document.getElementById("clock").innerText = hh + colon + mm + " " + ampm;
+}
+
 /* for the background heart and things */
 var heartMinx, heartMiny, heartMaxx, heartMaxy;
 var saturnMinx, saturnMiny, saturnMaxx, saturnMaxy;
@@ -813,7 +862,6 @@ function moveBackground(e) {
 }
 
 var isMobileDevice = false;
-
 window.onload = function() {
     document.body.classList.add("defaultTheme");
 
@@ -852,6 +900,8 @@ window.onload = function() {
     };
 
     setInterval(function() { updateScrollbars(); }, 100);
+
+    setInterval(function() { updateClock(); }, 500);
 
     appMain();
 };
