@@ -41,7 +41,7 @@
     --taskbar-bg: #cabade;
     --textbox-bg: #e9e6f0;
     --textbox-fg: #111;
-    --upload-icon: #8763c2;
+    --upload-icon: #7f5dc7;
     --background-tint: rgba(38,29,59,0.3);
 }
 
@@ -212,6 +212,10 @@ button, input[type=button], input[type=submit] {
     border-radius: 0px;     /* for safari */
     margin: 0px;
     padding: 4px 16px 4px 16px;
+}
+
+input[type=submit] {    /* this fixes safari's rounded corners */
+    -webkit-appearance: none;
 }
 
 button:active, input[type=button]:active, input[type=submit]:active, .buttonActive {
