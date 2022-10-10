@@ -4,7 +4,7 @@
 
 var validateUploadCounter;
 function validateUpload(frame) {
-    createWindow("validateUpload", "File Uploader", 40, -1, -1, -1);
+    createWindow("validateUpload", "File Uploader", 34, -1, -1, -1);
     clearWindow("validateUpload");
     createText("validateUpload", "Uploading file...");
     showWindow("validateUpload");
