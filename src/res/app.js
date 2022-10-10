@@ -4,7 +4,10 @@
 
 const artText = "\
     * Cat background: [Pixel Jeff](https://www.behance.net/gallery/103154127/SUDIO) on Behance\n\
-    * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [ID 9664c4](http://pixelartmaker.com/art/b2812518a5adf71) on Pixel Art Maker";
+    * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)\n\
+    * Folder icon: [Pixel Art Maker](http://pixelartmaker.com/art/e4800219f1710c9)\n\
+    * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
+    * GitHub icon: [Pixel Art Maker](http://pixelartmaker.com/art/d7e4e1e509c728d)";
 
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
@@ -18,7 +21,7 @@ function showArt() {
         return;
     }
 
-    createWindow("art", "Art Credits", 32, -1, 0, 0);
+    createWindow("art", "Art Credits", 36, -1, 0, 0);
     dialog("art", artText, "OK");
     randomizeWindowPosition("art");
     showWindow("art");
