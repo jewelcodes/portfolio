@@ -194,7 +194,9 @@ p {
 }
 
 .buttonContainer {
-    padding: 8px;
+    border-top: 1px solid var(--title-inactive-bg);
+    margin-top: 20px;
+    padding: 16px 0px;
     text-align: center;
 }
 
@@ -223,8 +225,8 @@ button:active, input[type=button]:active, input[type=submit]:active, .buttonActi
 }
 
 .content ul {
-    margin: 0px;
-    padding: 0px;
+    margin: 0px 0px 8px 0px !important;
+    padding: 0px !important;
     list-style: none;
 }
 
@@ -359,7 +361,6 @@ h3, h4, h5 {
 input[type=text], input[type=password], textarea {
     box-sizing: border-box;
     width: 100%;
-    margin-bottom: 8px;
 
     font-family: agave, monospace;
     font-size: 12pt;
@@ -375,6 +376,15 @@ input[type=text], input[type=password], textarea {
 textarea {
     height: 55vh;
     resize: none;
+}
+
+form label {
+    display: block;
+    margin-top: 12px;
+}
+
+form label:first-child {
+    margin: 0px !important;
 }
 
 form .buttonContainer {
