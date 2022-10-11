@@ -11,6 +11,9 @@ const artText = "\
     * Clipboard icon: [Nicholas Zaharias](http://www.ngzaharias.com/blog/2018/9/3/pixel-art)\n\
     * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)";
 
+const contactText = "\
+    You can reach me by email at [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com).";
+
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
     I'm a 20-year-old undergrad biotech student from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
@@ -129,23 +132,36 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    createImage("main", "res/images/avatar.png", "Celeste", 33, 33, 2);
+    createImage("main", "res/images/avatar.png", "Avatar", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
+}
+
+function openContact() {
+    if(getWindow("contact")) {
+        setActiveWindow("contact");
+        return;
+    }
+
+    createWindow("contact", "Contact", 35, -1, 0, 0);
+    dialog("contact", contactText, "OK");
+    randomizeWindowPosition("contact");
+    showWindow("contact");
 }
 
 async function appMain() {
     //document.getElementById("heart").onclick = function() { showArt(); };
     //document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
 
-    addMenuItem("Blog", async function() { await openBlog(); });
     addMenuItem("About", mainWindow);
+    addMenuItem("Blog", async function() { await openBlog(); });
+    addMenuItem("Contact", openContact);
     addMenuItem("Art Credits", showArt);
 
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
-    createDesktopIcon(desktopIconEmail, "Contact", function() { /* todo */});
+    createDesktopIcon(desktopIconEmail, "Contact", openContact);
     createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
     //createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
 
