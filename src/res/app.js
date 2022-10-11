@@ -125,7 +125,7 @@ function mainWindow() {
         return;
     }
 
-    createWindow("main", "About", 44, -1, -1, -1);
+    createWindow("main", "About", 42, -1, -1, -1);
     createImage("main", "res/images/celeste.png", "Celeste", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
