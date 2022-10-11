@@ -479,7 +479,7 @@ function dialog(id, text, buttonText) {    // creates a standard dialog with tex
     }
 
     const content = w.children[1];
-    content.innerHTML = parseMd(text);
+    content.innerHTML += parseMd(text);
 
     const container = document.createElement("div");
     container.classList.add("buttonContainer");
