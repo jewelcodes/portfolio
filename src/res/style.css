@@ -498,6 +498,10 @@ input[type=file] {
     background-image: url("/res/images/checklist.png");
 }
 
+.emailIcon {
+    background-image: url("/res/images/email.png");
+}
+
 /* desktop only rules */
 @media screen and (min-width: 1280px), screen and (orientation: landscape) {
     .mdImageContainer img {

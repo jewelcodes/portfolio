@@ -718,9 +718,10 @@ const desktopIconFolder = 0;
 const desktopIconGear = 1;
 const desktopIconGitHub = 2;
 const desktopIconChecklist = 3;
+const desktopIconEmail = 4;
 
 const desktopIconContainerSize = 128;
-const desktopIconMargin = 20;
+const desktopIconMargin = 24;
 
 function createDesktopIcon(icon, name, handler) {
     debug("createDesktopIcon(" + icon + ", '" + name + "', " + handler + ")");
@@ -800,6 +801,9 @@ function createDesktopIcon(icon, name, handler) {
         break;
     case desktopIconChecklist:
         i.classList.add("checklistIcon");
+        break;
+    case desktopIconEmail:
+        i.classList.add("emailIcon");
         break;
     default:
         error("undefined icon type ID " + icon);

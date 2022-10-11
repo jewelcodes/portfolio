@@ -7,8 +7,9 @@ const artText = "\
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)\n\
     * Folder icon: [Pixel Art Maker](http://pixelartmaker.com/art/e4800219f1710c9)\n\
     * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
-    * GitHub icon: [Pixel Art Maker](http://pixelartmaker.com/art/d7e4e1e509c728d)\n\
-    * Clipboard icon: [Nicholas Zaharias](http://www.ngzaharias.com/blog/2018/9/3/pixel-art)";
+    * GitHub logo: [Pixel Art Maker](http://pixelartmaker.com/art/d7e4e1e509c728d)\n\
+    * Clipboard icon: [Nicholas Zaharias](http://www.ngzaharias.com/blog/2018/9/3/pixel-art)\n\
+    * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)";
 
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
@@ -143,9 +144,10 @@ async function appMain() {
     addMenuItem("Art Credits", showArt);
 
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
+    createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
+    createDesktopIcon(desktopIconEmail, "Contact", function() { /* todo */});
     createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
-    createDesktopIcon(desktopIconGitHub, "Source Code", function() { window.open("https://github.com/jewelcodes/portfolio", "_blank"); });
 
     //await openBlog();
     mainWindow();
