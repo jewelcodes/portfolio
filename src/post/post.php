@@ -5,6 +5,12 @@
 
 error_reporting(0);
 
+class post {
+    public $id;
+    public $time;
+    public $title;
+};
+
 // this returns "ok" if it worked and "no" if it didn't
 // it expects POST data: postTitle and postBody
 
@@ -21,9 +27,11 @@ $postData = json_decode($f);
 $newId = sizeof($postData->posts);
 
 $postData->posts = array_pad($postData->posts, ($newId+1)*(-1), null);
-$postData->posts[0]->id = $newId;
-$postData->posts[0]->time = time();
-$postData->posts[0]->title = $_POST["postTitle"];
+$newPost = new post();
+$newPost->id = $newId;
+$newPost->time = time();
+$newPost->title = $_POST["postTitle"];
+$postData->posts[0] = $newPost;
 
 $newData = json_encode($postData);
 
