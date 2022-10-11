@@ -328,7 +328,6 @@ h3, h4, h5 {
     color: var(--button-fg);
     border: 2px solid;
     border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
-    margin: 0px 1px 0px 0px;
     padding: 4px 8px 4px 8px;
     font-size: 92%;
 }
