@@ -740,16 +740,33 @@ function createDesktopIcon(icon, name, handler) {
     const maxx = window.innerWidth - (desktopIconContainerSize+desktopIconMargin);
     const maxy = window.innerHeight - (desktopIconContainerSize+desktopIconMargin);
 
-    let y = miny + ((desktopIconContainerSize+desktopIconMargin)*iconCount);
-    let x = minx;
+    var x, y;
+    x = minx;
+    y = miny;
 
-    while(y >= maxy) {
-        y -= maxy;
-        if(y < miny) y = miny;
-        x += desktopIconContainerSize+desktopIconMargin;
-        if(x >= maxx) {
-            error("no more space to create desktop icon");
-            return;
+    for(let i = 0; desktop.children.length && i < desktop.children.length; i++) {
+        if(!isMobileDevice) {
+            // desktop - put new icons below existing ones
+            y += desktopIconContainerSize+desktopIconMargin;
+            if(y > maxy) {
+                y = miny;
+                x += desktopIconContainerSize+desktopIconMargin;
+                if(x > maxx) {
+                    error("ran out of desktop space");
+                    return false;
+                }
+            }
+        } else {
+            // mobile - put new icons adjacent to existing ones
+            x += desktopIconContainerSize+desktopIconMargin;
+            if(x > maxx) {
+                x = minx;
+                y += desktopIconContainerSize+desktopIconMargin;
+                if(y > maxy) {
+                    error("ran out of desktop space");
+                    return false;
+                }
+            }
         }
     }
 
@@ -788,7 +805,7 @@ function createDesktopIcon(icon, name, handler) {
         error("undefined icon type ID " + icon);
         i.remove();
         iconContainer.remove();
-        return;
+        return false;
     }
 
     iconContainer.appendChild(i);
@@ -798,6 +815,7 @@ function createDesktopIcon(icon, name, handler) {
     iconContainer.appendChild(t);
 
     desktop.appendChild(iconContainer);
+    return true;
 }
 
 /* clock */
