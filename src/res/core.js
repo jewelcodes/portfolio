@@ -717,6 +717,7 @@ function createImage(id, url, alt, w, h, align) {
 const desktopIconFolder = 0;
 const desktopIconGear = 1;
 const desktopIconGitHub = 2;
+const desktopIconChecklist = 3;
 
 const desktopIconContainerSize = 128;
 const desktopIconMargin = 20;
@@ -779,6 +780,9 @@ function createDesktopIcon(icon, name, handler) {
         break;
     case desktopIconGitHub:
         i.classList.add("githubIcon");
+        break;
+    case desktopIconChecklist:
+        i.classList.add("checklistIcon");
         break;
     default:
         error("undefined icon type ID " + icon);

@@ -451,15 +451,6 @@ input[type=file] {
     text-align: center;
 }
 
-.desktopIconContainer i {
-    display: block;
-    position: absolute;
-    top: 8px;
-    width: calc(100% - 32px);
-    height: calc(100% - 32px - 14pt);
-    image-rendering: pixelated;
-}
-
 .desktopIconContainer span {
     position: absolute;
     bottom: 8px;
@@ -479,25 +470,32 @@ input[type=file] {
     background-color: var(--desktop-icon-container-active);
 }
 
-.folderIcon {
-    background-image: url("/res/images/folder.png");
+.desktopIconContainer i {
+    display: block;
+    position: absolute;
+    top: 8px;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px - 14pt);
+    image-rendering: pixelated;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.folderIcon {
+    background-image: url("/res/images/folder.png");
 }
 
 .gearIcon {
     background-image: url("/res/images/gear.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .githubIcon {
     background-image: url("/res/images/github.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+}
+
+.checklistIcon {
+    background-image: url("/res/images/checklist.png");
 }
 
 /* desktop only rules */
