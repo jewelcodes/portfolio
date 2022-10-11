@@ -41,16 +41,13 @@ async function openBlog() {
         return;
     }
 
-    createWindow("blog", "Blog", 47, 35, 0, 0);
-
     // generate list of blog posts
     var blogMd = new String();
     blogMd = "";
 
     response = await fetch("res/posts/posts.json");
     if(!response.ok || response.status != 200) {
-        createText("blog", "Unable to fetch blog posts. Check your internet connection.");
-        showWindow("blog");
+        messageBox("Error", "Failed to load list of blog posts; check your internet connection.", "OK");
         return;
     }
 
@@ -61,6 +58,7 @@ async function openBlog() {
         blogMd += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + timeString(posts.posts[i].time) + "\n";
     }
 
+    createWindow("blog", "Blog", 47, 35, 0, 0);
     createText("blog", blogMd);
     setScrollable("blog", true);
     showWindow("blog");
@@ -104,7 +102,7 @@ async function openBlogPost(id) {
 
     let response = await fetch("res/posts/" + id + ".md");
     if(!response.ok || response.status != 200) {
-        alert("error");
+        messageBox("Error", "Failed to load blog post; check your internet connection.", "OK");
         return;
     }
 
