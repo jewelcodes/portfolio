@@ -329,7 +329,7 @@ h3, h4, h5 {
     border: 2px solid;
     border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
     padding: 4px 8px 4px 8px;
-    font-size: 92%;
+    font-size: 85%;
 }
 
 #menu {
