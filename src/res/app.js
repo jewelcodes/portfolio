@@ -84,7 +84,7 @@ function timeString(t) {
     } else if(elapsed < 604800) {
         var day = Math.floor(elapsed/86400);
         if(day != 1) str = day + " days ago";
-        else str = "a day ago";
+        else str = "yesterday";
     } else {
         var timestamp = new Date(t * 1000);
         str = timestamp.getDate() + " " + months[timestamp.getMonth()] + " " + timestamp.getFullYear();
