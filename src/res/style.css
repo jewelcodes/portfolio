@@ -380,7 +380,7 @@ h3, h4, h5 {
     font-weight: bold;
 }
 
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=email], textarea {
     box-sizing: border-box;
     width: 100%;
 
@@ -396,7 +396,7 @@ input[type=text], input[type=password], textarea {
 }
 
 textarea {
-    height: 55vh;
+    height: 50vh;
     resize: none;
 }
 

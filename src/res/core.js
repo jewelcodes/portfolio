@@ -618,6 +618,27 @@ function createTextbox(id, name, label, required) {
     f.appendChild(tb);
 }
 
+function createEmailbox(id, name, label, required) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const l = document.createElement("label");
+    l.setAttributeNS(null, "for", name);
+    l.innerText = label;
+    f.appendChild(l);
+
+    const tb = document.createElement("input");
+    tb.type = "email";
+    tb.name = name;
+    tb.id = name;
+    tb.spellcheck = false;
+    if(required) tb.required = true;
+    f.appendChild(tb);
+}
+
 function createFileUploader(id, name, label, mimeTypes, multiple) {
     const f = document.getElementById(id);
     if(!f) {
