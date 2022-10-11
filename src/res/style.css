@@ -452,13 +452,12 @@ input[type=file] {
 }
 
 .desktopIconContainer i {
-    color: var(--desktop-icon);
-    font-size: 72px;
+    display: block;
     position: absolute;
     top: 8px;
     width: calc(100% - 32px);
     height: calc(100% - 32px - 14pt);
-    display: block;
+    image-rendering: pixelated;
 }
 
 .desktopIconContainer span {
