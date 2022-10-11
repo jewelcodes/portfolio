@@ -178,6 +178,8 @@ function createWindow(id, title, w, h, x, y) {
     button.onclick = function() { toggleWindow(id); };
 
     document.getElementById("taskbar").children[1].appendChild(button);
+
+    adjustTaskbarSize();    // in case of overflow
 }
 
 function showWindow(id) {
@@ -474,6 +476,41 @@ function createTaskbar() {
     updateClock();
 }
 
+function adjustTaskbarSize() {
+    const containerWidth = (document.getElementById("clock").offsetLeft - 8) - (document.getElementById("menuButton").offsetWidth + 24);
+    //debug("container width = " + containerWidth);
+    const taskbar = document.getElementById("taskbar");
+    const taskbarButtons = document.getElementsByClassName("taskbarButton");
+    if(!taskbarButtons) return;
+
+    let buttonWidth = taskbarButtons[0].offsetWidth;
+    let maxx = document.getElementById("clock").offsetLeft - buttonWidth - 4;
+
+    // now we know we've overflown
+    /*while(taskbarButtons[taskbarButtons.length-1].offsetLeft > maxx) {
+        buttonWidth--;
+        debug("lowering button width to " + buttonWidth);
+
+        for(var i = 0; i < taskbarButtons.length; i++) {
+            taskbarButtons[i].style.width = buttonWidth + "px !important";
+        }
+    }*/
+
+    if(taskbarButtons[taskbarButtons.length-1].offsetLeft > maxx || taskbarButtons[taskbarButtons.length-1].offsetTop != taskbarButtons[0].offsetTop) {
+        buttonWidth = Math.floor(containerWidth/(windowCount));
+        for(var i = 0; i < taskbarButtons.length; i++) {
+            taskbarButtons[i].style.width = buttonWidth + "px";
+        }
+    }
+
+    while(taskbar.offsetHeight != taskbarHeight) {
+        buttonWidth--;
+        for(var i = 0; i < taskbarButtons.length; i++) {
+            taskbarButtons[i].style.width = buttonWidth + "px";
+        }
+    }
+}
+
 /* window body content manager */
 function dialog(id, text, buttonText) {    // creates a standard dialog with text and one button that closes it
     debug("dialog('" + id + "', '" + text + "', '" + buttonText + "')");
@@ -504,6 +541,15 @@ function dialog(id, text, buttonText) {    // creates a standard dialog with tex
 
 function yesNo(id, text, handler) {    // creates a yes/no dialog box that then calls handler() with the choice
     // TODO
+}
+
+function messageBox(title, text, buttonText) {
+    var id = "messageBox" + Math.floor(Math.random()*9999);
+    createWindow(id, title,  25, -1, -1, -1);
+    dialog(id, text, buttonText);
+    centerWindow(id);
+    showWindow(id);
+    return;
 }
 
 /* these functions are for non-standard dialog boxes */

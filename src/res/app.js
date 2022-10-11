@@ -12,7 +12,7 @@ const artText = "\
     * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)";
 
 const contactText = "\
-    You can reach me by email at [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com).";
+    * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)";
 
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
@@ -144,7 +144,7 @@ function openContact() {
         return;
     }
 
-    createWindow("contact", "Contact", 35, -1, 0, 0);
+    createWindow("contact", "Contact", 30, -1, 0, 0);
     dialog("contact", contactText, "OK");
     randomizeWindowPosition("contact");
     showWindow("contact");
@@ -162,7 +162,9 @@ async function appMain() {
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     createDesktopIcon(desktopIconEmail, "Contact", openContact);
-    createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
+    createDesktopIcon(desktopIconGear, "Settings", async function() {
+        messageBox("Unimplemented", "This feature is still unimplemented.", "OK");
+    });
     //createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
 
     //await openBlog();
