@@ -101,7 +101,7 @@ function parseMd(md) {     // markdown to html
                     // link
                     if(linkUrl[0] == 'b' && linkUrl[1] == 'p' && linkUrl[2] == ':') {
                         // blog post
-                        output += "<a onclick=\"blogPost('" + linkUrl.substring(3) + "')\">" + linkText + "</a>";
+                        output += "<a onclick=\"openBlogPost('" + linkUrl.substring(3) + "')\">" + linkText + "</a>";
                     } else {
                         // normal link
                         output += "<a target=\"_blank\" href=\"" + linkUrl + "\">" + linkText + "</a>";

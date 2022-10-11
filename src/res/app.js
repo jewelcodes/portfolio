@@ -96,7 +96,7 @@ function timeString(t) {
 }
 
 // opens a specific blog post
-async function blogPost(id) {
+async function openBlogPost(id) {
     if(getWindow("post_" + id)) {
         setActiveWindow("post_" + id);
         return;
