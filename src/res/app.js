@@ -145,9 +145,9 @@ async function appMain() {
 
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
-    createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
     createDesktopIcon(desktopIconEmail, "Contact", function() { /* todo */});
-    createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
+    createDesktopIcon(desktopIconGear, "Settings", async function() { /* todo */ });
+    //createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
 
     //await openBlog();
     mainWindow();
