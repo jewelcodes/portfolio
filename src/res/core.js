@@ -718,23 +718,38 @@ function createImage(id, url, alt, w, h, align) {
 
     const content = wi.children[1];
 
-    const c = document.createElement("div");    // container
-    if(align == 1) {
-        c.style.textAlign = "right";
-    } else if(align == 2) {
-        c.style.textAlign = "center";
-        c.style.paddingBottom = "8px";
-    } else {
-        // default align left
-        c.style.textAlign = "left";
-    }
-
     const i = document.createElement("img");
     i.src = url;
     i.alt = alt;
 
-    c.appendChild(i);
-    content.appendChild(c);
+    if(align == 2) {    // center
+        const c = document.createElement("div");    // container
+        if(align == 1) {
+            c.style.textAlign = "right";
+        } else if(align == 2) {
+            c.style.textAlign = "center";
+            c.style.paddingBottom = "8px";
+        } else {
+            // default align left
+            c.style.textAlign = "left";
+        }
+
+        c.appendChild(i);
+        content.appendChild(c);
+    } else {
+        // left and right
+        if(align == 1) {
+            i.style.textAlign = "right";
+            i.style.marginLeft = "8px";
+            i.style.float = "right";
+        } else {
+            i.style.textAlign = "left";
+            i.style.marginRight = "8px";
+            i.style.float = "left";
+        }
+
+        content.appendChild(i);
+    }
 
     i.style.width = Math.floor((w/100) * i.parentNode.offsetWidth) + "px";
     if(h) i.style.height = Math.floor((i.offsetWidth - 4) * (h/w)) + "px";
