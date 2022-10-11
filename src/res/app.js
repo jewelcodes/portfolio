@@ -23,6 +23,7 @@ function showArt() {
     }
 
     createWindow("art", "Art Credits", 36, -1, 0, 0);
+    createImage("art", "/res/images/celeste.png", "Madeline & Badeline from Celeste", 33, 33, 2);
     dialog("art", artText, "OK");
     randomizeWindowPosition("art");
     showWindow("art");
@@ -127,7 +128,7 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    createImage("main", "res/images/celeste.png", "Celeste", 33, 33, 2);
+    createImage("main", "res/images/avatar.png", "Celeste", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
