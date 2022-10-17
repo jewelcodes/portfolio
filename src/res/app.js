@@ -21,6 +21,9 @@ const mainText = "\
     I've had a passion for coding for as far back as I can remember and some of my work is showcased here.\n\n \
     This page is powered by a custom UI framework and blogging system built with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
+const cookieNotice = "\
+    *Notice: *The functionality provided here uses cookies to deliver you the best possible experience. By changing settings here, you consent to using cookies.";
+
 function showArt() {
     if(getWindow("art")) {
         setActiveWindow("art");
@@ -149,6 +152,55 @@ function openContact() {
     showWindow("contact");
 }
 
+function openSettings() {
+    if(getWindow("settings")) {
+        setActiveWindow("settings");
+        return;
+    }
+
+    createWindow("settings", "Settings", 35, -1, 0, 0);
+    createText("settings", cookieNotice);
+
+    createText("settings", "Select the theme you want to use.");
+
+    createForm("settings", "settingsForm", "none", "", function(f) { return changeSettings(f); });
+
+    createRadioButton("settingsForm", "theme", "purple", "Purple");
+    createRadioButton("settingsForm", "theme", "green", "Green");
+    createRadioButton("settingsForm", "theme", "random", "Random");
+
+    createSubmitButton("settingsForm", "Apply");
+
+    randomizeWindowPosition("settings");
+    showWindow("settings");
+}
+
+function changeSettings(f) {
+    const form = document.getElementById("settingsForm");
+    const val = form.theme.value;
+
+    setCookie("theme", val);
+
+    if(val == "purple") {
+        document.body.classList.remove("greenTheme");
+        document.body.classList.add("purpleTheme");
+    } else if(val == "green") {
+        document.body.classList.remove("purpleTheme");
+        document.body.classList.add("greenTheme");
+    } else {
+        // random
+        if(Math.random() < 0.5) {
+            document.body.classList.remove("greenTheme");
+            document.body.classList.add("purpleTheme");
+        } else {
+            document.body.classList.remove("purpleTheme");
+            document.body.classList.add("greenTheme");
+        }
+    }
+
+    return false;
+}
+
 async function appMain() {
     //document.getElementById("heart").onclick = function() { showArt(); };
     //document.getElementById("saturn").onclick = document.getElementById("heart").onclick;
@@ -161,9 +213,7 @@ async function appMain() {
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     createDesktopIcon(desktopIconEmail, "Contact", openContact);
-    createDesktopIcon(desktopIconGear, "Settings", async function() {
-        messageBox("Unimplemented", "This feature is still unimplemented.", "OK");
-    });
+    createDesktopIcon(desktopIconGear, "Settings", openSettings);
     //createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
 
     //await openBlog();
