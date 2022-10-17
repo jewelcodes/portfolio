@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="/res/style.css">
     <script src="/res/md.js"></script>
     <script src="/res/core.js"></script>
+    <script src="/res/cookie.js"></script>
     <script src="/res/error.js"></script>
     <script src="https://kit.fontawesome.com/a728e90e28.js" crossorigin="anonymous"></script>
 </head>
