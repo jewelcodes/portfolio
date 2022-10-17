@@ -4,6 +4,7 @@
 
 const artText = "\
     * Cat background: [Pixel Jeff](https://www.behance.net/gallery/103154127/SUDIO) on Behance\n\
+    * Plant background: [@minimossart](https://twitter.com/minimossart) on Twitter\n\
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)\n\
     * Folder icon: [Pixel Art Maker](http://pixelartmaker.com/art/e4800219f1710c9)\n\
     * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
