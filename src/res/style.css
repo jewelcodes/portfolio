@@ -523,6 +523,7 @@ input[type=radio] {
     margin-right: 6px;
     font-weight: bold;
     font-style: normal;
+    border-radius: 100%;
 
     border: 2px solid;
     border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
