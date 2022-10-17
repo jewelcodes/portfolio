@@ -76,7 +76,7 @@
     --desktop-icon-container-active: rgba(22,33,38,0.7);
     --desktop-icon-text: #e6eef0;
     --desktop-icon-text-bg: rgba(22,33,38,0.8);
-    --folder-filter: hue-rotate(195deg) brightness(85%);
+    --folder-filter: hue-rotate(245deg) brightness(75%);
 }
 
 body {
