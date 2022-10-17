@@ -977,7 +977,7 @@ function moveBackground(e) {
 
 var isMobileDevice = false;
 window.onload = function() {
-    document.body.classList.add("defaultTheme");
+    document.body.classList.add("purpleTheme");
 
     // detect mobile devices
     let result = navigator.userAgent.search("Android");
