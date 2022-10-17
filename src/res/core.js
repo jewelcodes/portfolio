@@ -977,7 +977,20 @@ function moveBackground(e) {
 
 var isMobileDevice = false;
 window.onload = function() {
-    document.body.classList.add("purpleTheme");
+    // set the theme
+    let theme = getCookie("theme");
+    if(theme == "green") {
+        document.body.classList.add("greenTheme");
+    } else if(theme == "purple") {
+        document.body.classList.add("purpleTheme");
+    } else {
+        debug("random theme");
+        if(Math.random() < 0.5) {
+            document.body.classList.add("greenTheme");
+        } else {
+            document.body.classList.add("purpleTheme");
+        }
+    }
 
     // detect mobile devices
     let result = navigator.userAgent.search("Android");
