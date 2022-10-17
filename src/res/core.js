@@ -624,7 +624,7 @@ function createForm(winId, formId, formMethod, formAction, submitHandler) {
     f.autocomplete = "off";
     f.target = formId + "Frame";
     f.enctype = "multipart/form-data";
-    f.onsubmit = function() { submitHandler(frame); };
+    f.onsubmit = function() { return submitHandler(frame); };
 
     content.appendChild(frame);
     content.appendChild(f);
@@ -748,6 +748,52 @@ function createSubmitButton(id, text) {
 
     container.appendChild(button);
     f.appendChild(container);
+}
+
+function createRadioButton(id, name, value, label) {
+    const f = document.getElementById(id);
+    if(!f) {
+        error("form '" + id + "' doesn't exist");
+        return;
+    }
+
+    const rb = document.createElement("input");
+    rb.type = "radio";
+    rb.name = name;
+    rb.id = name + "_" + value;
+    rb.value = value;
+    f.appendChild(rb);
+
+    const l = document.createElement("label");
+    l.setAttributeNS(null, "for", name + "_" + value);
+
+    const i = document.createElement("i");
+    i.classList.add("radioIcon");
+    l.appendChild(i);
+
+    const sel = document.createElement("i");
+    sel.classList.add("radioIconChecked");
+    sel.style.visibility = "hidden";
+    i.appendChild(sel);
+
+    const s = document.createElement("span");
+    s.innerText = label;
+    l.appendChild(s);
+
+    f.appendChild(l);
+
+    rb.onchange = function() {
+        let radioButtonIcons = f.getElementsByClassName("radioIconChecked");
+        for(var i = 0; i < radioButtonIcons.length; i++) {
+            radioButtonIcons[i].style.visibility = "hidden";
+        }
+
+        if(rb.checked) {
+            sel.style.visibility = "visible";
+        } else {
+            sel.style.visibility = "hidden";
+        }
+    }
 }
 
 // creates an image

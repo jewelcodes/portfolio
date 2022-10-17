@@ -510,6 +510,33 @@ input[type=file] {
     background-image: url("/res/images/email.png");
 }
 
+input[type=radio] {
+    display: none !important;
+}
+
+.radioIcon {
+    box-sizing: border-box;
+    float: left;
+    display: block;
+    width: 12pt;
+    height: 12pt;
+    margin-right: 6px;
+    font-weight: bold;
+    font-style: normal;
+
+    border: 2px solid;
+    border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
+}
+
+.radioIconChecked {
+    position: absolute;
+    margin: 3px;
+    width: calc(12pt - 10px);
+    height: calc(12pt - 10px);
+    background-color: var(--object-dark);
+    border-radius: 100%;
+}
+
 /* desktop only rules */
 @media screen and (min-width: 1280px), screen and (orientation: landscape) {
     .mdImageContainer img {
