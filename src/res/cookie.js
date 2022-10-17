@@ -22,5 +22,5 @@ function getCookie(name) {
 }
 
 function setCookie(name, value) {
-    document.cookie = name + "=" + value + ";";
+    document.cookie = name + "=" + value + ";max-age=5184000";  // two months
 }
