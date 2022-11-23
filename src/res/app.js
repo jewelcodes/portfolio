@@ -209,6 +209,7 @@ async function appMain() {
     addMenuItem("Blog", async function() { await openBlog(); });
     addMenuItem("Contact", openContact);
     addMenuItem("Art Credits", showArt);
+    addMenuItem("Settings", openSettings);  // more accessible on mobile
 
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
