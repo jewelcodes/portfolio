@@ -10,7 +10,8 @@ const artText = "\
     * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
     * GitHub logo: [Pixel Art Maker](http://pixelartmaker.com/art/d7e4e1e509c728d)\n\
     * Clipboard icon: [Nicholas Zaharias](http://www.ngzaharias.com/blog/2018/9/3/pixel-art)\n\
-    * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)";
+    * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)\n\
+    * Font: [Agave](https://b.agaric.net/page/agave), distributed under the [MIT license](https://github.com/blobject/agave/blob/master/LICENSE)";
 
 const contactText = "\
     * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)";
