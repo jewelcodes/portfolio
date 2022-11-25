@@ -108,11 +108,11 @@ function parseMd(md) {     // markdown to html
                     }
                 } else {
                     // image
-                    output += "<div class='mdImageContainer'>";
+                    output += "</p><div class='mdImageContainer'>";
                     output += "<img src='" + linkUrl + "' alt='" + linkText + "'>";
                     output += "<br>";
                     output += "<em>" + linkText + "</em>";
-                    output += "</div>";
+                    output += "</div><p>";
                     isImage = false;
                 }
             }
