@@ -183,20 +183,12 @@ function changeSettings(f) {
     setCookie("theme", val);
 
     if(val == "purple") {
-        document.body.classList.remove("greenTheme");
-        document.body.classList.add("purpleTheme");
+        setTheme(purpleTheme);
     } else if(val == "green") {
-        document.body.classList.remove("purpleTheme");
-        document.body.classList.add("greenTheme");
+        setTheme(greenTheme);
     } else {
         // random
-        if(Math.random() < 0.5) {
-            document.body.classList.remove("greenTheme");
-            document.body.classList.add("purpleTheme");
-        } else {
-            document.body.classList.remove("purpleTheme");
-            document.body.classList.add("greenTheme");
-        }
+        setTheme(randomTheme);
     }
 
     return false;

@@ -1021,21 +1021,41 @@ function moveBackground(e) {
     saturn.style.top = ny + "px";
 }
 
+const purpleTheme = 1;
+const greenTheme = 2;
+const randomTheme = 3;	// literally anything else
+
+function setTheme(theme) {
+	const themeColor = document.querySelector("meta[name='theme-color']");
+
+	switch(theme) {
+	case purpleTheme:
+		document.body.classList.add("purpleTheme");
+		document.body.classList.remove("greenTheme");
+		themeColor.content = "#7f5dc7";
+		break;
+	case greenTheme:
+		document.body.classList.add("greenTheme");
+		document.body.classList.remove("purpleTheme");
+		themeColor.content = "#45898a";
+		break;
+	default:
+		//debug("random theme");
+		if(Math.random() < 0.5) setTheme(greenTheme);
+		else setTheme(purpleTheme);
+	}
+}
+
 var isMobileDevice = false;
 window.onload = function() {
     // set the theme
     let theme = getCookie("theme");
     if(theme == "green") {
-        document.body.classList.add("greenTheme");
+        setTheme(greenTheme);
     } else if(theme == "purple") {
-        document.body.classList.add("purpleTheme");
+		setTheme(purpleTheme);
     } else {
-        debug("random theme");
-        if(Math.random() < 0.5) {
-            document.body.classList.add("greenTheme");
-        } else {
-            document.body.classList.add("purpleTheme");
-        }
+		setTheme(randomTheme);
     }
 
     // detect mobile devices
