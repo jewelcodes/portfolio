@@ -39,15 +39,12 @@ function showArt() {
 }
 
 var response, posts;
+var blogMd;
 
-async function openBlog() {
-    if(getWindow("blog")) {
-        setActiveWindow("blog");
-        return;
-    }
-
+// loads the blog but without showing the window
+async function loadBlog() {
     // generate list of blog posts
-    var blogMd = new String();
+    blogMd = new String();
     blogMd = "";
 
     response = await fetch("res/posts/posts.json");
@@ -58,6 +55,16 @@ async function openBlog() {
 
     posts = await response.json();
     //debug(posts.posts.length);
+}
+
+// uses above function to load the blog + shows the window
+async function openBlog() {
+    if(getWindow("blog")) {
+        setActiveWindow("blog");
+        return;
+    }
+
+    await loadBlog();
 
     for(var i = 0; i < posts.posts.length; i++) {
         blogMd += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + timeString(posts.posts[i].time) + "\n";
@@ -98,17 +105,26 @@ function timeString(t) {
     return str;
 }
 
+function updateURI(uri) {
+    if(window.history.replaceState)     // check for old browsers
+        window.history.replaceState(null, "", uri);
+}
+
 // opens a specific blog post
-async function openBlogPost(id) {
+// returns true if successful
+async function openBlogPost(id, silence=false) {
     if(getWindow("post_" + id)) {
         setActiveWindow("post_" + id);
-        return;
+        return true;
     }
 
     let response = await fetch("res/posts/" + id + ".md");
     if(!response.ok || response.status != 200) {
-        messageBox("Error", "Failed to load blog post; check your internet connection.", "OK");
-        return;
+        error("failed to load blog post ID " + id);
+        if(!silence) {
+            messageBox("Error", "Failed to load blog post; check your internet connection.", "OK");
+        }
+        return false;
     }
 
     let post = await response.text();
@@ -126,6 +142,9 @@ async function openBlogPost(id) {
     createText("post_" + id, post);
     setScrollable("post_" + id, true);
     showWindow("post_" + id);
+
+    updateURI("?p=" + id);
+    return true;
 }
 
 function mainWindow() {
@@ -212,5 +231,18 @@ async function appMain() {
 
     //await openBlog();
     mainWindow();
+
+    // load the post specified by the ?p=ID parameter
+    const uri = window.location.search;
+    const parameters = new URLSearchParams(uri);
+
+    if(!parameters.has("p")) return;
+
+    let id = parameters.get("p");
+    await loadBlog();
+    if(!await openBlogPost(id, true)) {
+        // nonexistent blog post
+        updateURI("/");
+    }
 }
 
