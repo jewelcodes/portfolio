@@ -277,6 +277,36 @@ function clearWindow(id) {
     w.children[1].innerHTML = "";
 }
 
+/* window event handlers */
+const windowEventClose = 1;
+const windowEventClick = 2;     // more to be added
+
+function addWindowEvent(id, type, handler) {
+    const w = document.getElementById(id);
+    if(!w) {
+        error("window '" + id + "' doesn't exist");
+        return false;
+    }
+
+    switch(type) {
+    case windowEventClose:
+        let defaultCloseHandler = w.children[0].children[1].onclick;
+        w.children[0].children[1].onclick = function() {
+            handler();
+            defaultCloseHandler();
+        };
+        break;
+    case windowEventClick:
+        w.onclick = handler;
+        break;
+    default:
+        error("undefined window event type " + id);
+        return false;
+    }
+
+    return true;
+}
+
 /* scrollbar implementation */
 var activeScrollbar = null;
 
@@ -1048,6 +1078,10 @@ function setTheme(theme) {
 
 var isMobileDevice = false;
 window.onload = function() {
+    window.onunload = function() {
+        if(appClose) appClose();
+    };
+
     // set the theme
     let theme = getCookie("theme");
     if(theme == "green") {
