@@ -76,7 +76,7 @@ async function openBlog() {
     showWindow("blog");
 }
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function timeString(t) {
     var elapsed = (Date.now() / 1000) - t;
