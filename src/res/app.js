@@ -141,6 +141,16 @@ async function openBlogPost(id, silence=false) {
 
     createText("post_" + id, post);
     setScrollable("post_" + id, true);
+
+    // event handlers for the post ID in the URI
+    addWindowEvent("post_" + id, windowEventClose, function() {
+        updateURI("/");
+    });
+
+    addWindowEvent("post_" + id, windowEventClick, function() {
+        updateURI("?p=" + id);
+    });
+
     showWindow("post_" + id);
 
     updateURI("?p=" + id);
