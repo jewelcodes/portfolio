@@ -297,7 +297,8 @@ function addWindowEvent(id, type, handler) {
         };
         break;
     case windowEventClick:
-        w.onclick = handler;
+        w.children[0].children[0].onclick = handler;
+        w.children[1].onclick = handler;
         break;
     default:
         error("undefined window event type " + id);
