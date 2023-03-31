@@ -71,7 +71,7 @@ async function openBlog() {
         blogMd += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + timeString(posts.posts[i].time) + "\n";
     }
 
-    createWindow("blog", "Blog", 47, 35, 0, 0);
+    createWindow("blog", "Blog", 48, 35, 0, 0);
     createText("blog", blogMd);
     setScrollable("blog", true);
     showWindow("blog");
