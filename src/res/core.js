@@ -1054,27 +1054,38 @@ function moveBackground(e) {
 
 const purpleTheme = 1;
 const greenTheme = 2;
-const randomTheme = 3;	// literally anything else
+const blueTheme = 3;
+const randomTheme = 100;    // literally anything else
 
 function setTheme(theme) {
-	const themeColor = document.querySelector("meta[name='theme-color']");
+    const themeColor = document.querySelector("meta[name='theme-color']");
 
-	switch(theme) {
-	case purpleTheme:
-		document.body.classList.add("purpleTheme");
-		document.body.classList.remove("greenTheme");
-		themeColor.content = "#7f5dc7";
-		break;
-	case greenTheme:
-		document.body.classList.add("greenTheme");
-		document.body.classList.remove("purpleTheme");
-		themeColor.content = "#45898a";
-		break;
-	default:
-		//debug("random theme");
-		if(Math.random() < 0.5) setTheme(greenTheme);
-		else setTheme(purpleTheme);
-	}
+    switch(theme) {
+    case purpleTheme:
+        document.body.classList.add("purpleTheme");
+        document.body.classList.remove("greenTheme");
+        document.body.classList.remove("blueTheme");
+        themeColor.content = "#7f5dc7";
+        break;
+    case greenTheme:
+        document.body.classList.add("greenTheme");
+        document.body.classList.remove("purpleTheme");
+        document.body.classList.remove("blueTheme");
+        themeColor.content = "#45898a";
+        break;
+    case blueTheme:
+        document.body.classList.add("blueTheme");
+        document.body.classList.remove("purpleTheme");
+        document.body.classList.remove("greenTheme");
+        themeColor.content = "#3666c2";
+        break;
+    default:
+        //debug("random theme");
+        let r = Math.floor(Math.random() * 3);
+        if(r == 0) setTheme(purpleTheme);
+        else if(r == 1) setTheme(greenTheme);
+        else setTheme(blueTheme);
+    }
 }
 
 var isMobileDevice = false;
@@ -1088,9 +1099,11 @@ window.onload = function() {
     if(theme == "green") {
         setTheme(greenTheme);
     } else if(theme == "purple") {
-		setTheme(purpleTheme);
+        setTheme(purpleTheme);
+    } else if(theme == "blue") {
+        setTheme(blueTheme);
     } else {
-		setTheme(randomTheme);
+        setTheme(randomTheme);
     }
 
     // detect mobile devices

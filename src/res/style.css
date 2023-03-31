@@ -79,6 +79,34 @@
     --folder-filter: hue-rotate(245deg) brightness(75%);
 }
 
+.blueTheme {
+    --background: url("/res/images/bg3.gif");
+    --text: #111;
+    --window-border: #11151e;
+    --title-inactive-bg: #6b96e8;
+    --title-inactive-fg: #24375c;
+    --title-active-bg: #3666c2;
+    --title-active-fg: #111;
+    --window-body: #d8dce3;
+    --button-bg: #c3c9e0;
+    --button-fg: #111;
+    --object-bright: #858aa8;
+    --object-dark: #3b3c4f;
+    --link: #1b3dab;
+    --scrollbar-container: #9499a8;
+    --taskbar-border: #3b3c4f;
+    --taskbar-bg: #bfc5db;
+    --textbox-bg: #e6e8f0;
+    --textbox-fg: #111;
+    --upload-icon: 3666c2;
+    --background-tint: rgba(14, 15, 23, 0.26);
+    --desktop-icon-container-inactive: rgba(0,0,0,0);
+    --desktop-icon-container-active: rgba(22, 24, 38, 0.7);
+    --desktop-icon-text: #e6eef0;
+    --desktop-icon-text-bg: rgba(22, 24, 38, 0.7);
+    --folder-filter: hue-rotate(-36deg) brightness(70%);
+}
+
 body {
     width: 100vw;
     height: 100vh;

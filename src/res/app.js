@@ -197,6 +197,7 @@ function openSettings() {
 
     createRadioButton("settingsForm", "theme", "purple", "Purple");
     createRadioButton("settingsForm", "theme", "green", "Green");
+    createRadioButton("settingsForm", "theme", "blue", "Blue");
     createRadioButton("settingsForm", "theme", "random", "Random");
 
     createSubmitButton("settingsForm", "Apply");
@@ -215,6 +216,8 @@ function changeSettings(f) {
         setTheme(purpleTheme);
     } else if(val == "green") {
         setTheme(greenTheme);
+    } else if(val == "blue") {
+        setTheme(blueTheme);
     } else {
         // random
         setTheme(randomTheme);
