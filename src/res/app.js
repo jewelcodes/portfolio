@@ -165,7 +165,7 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    createImage("main", "res/images/avatar.png", "Avatar", 33, 33, 2);
+    createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
