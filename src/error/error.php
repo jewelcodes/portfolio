@@ -16,10 +16,10 @@
     <link rel="icon" sizes="192x192" type="image/png" href="/res/images/android-chrome-192x192.png">
     <link rel="icon" sizes="512x512" type="image/png" href="/res/images/android-chrome-512x512.png">
 
-    <link rel="preload" type="font/ttf" as="font" href="/res/fonts/agave-regular.ttf">
-    <link rel="preload" type="font/ttf" as="font" href="/res/fonts/agave-bold.ttf">
+    <link rel="preload" type="font/ttf" as="font" href="/res/fonts/agave-regular.ttf" crossorigin>
+    <link rel="preload" type="font/ttf" as="font" href="/res/fonts/agave-bold.ttf" crossorigin>
     <link rel="stylesheet" type="text/css" href="/res/style.css">
-    
+
     <script src="/res/md.js"></script>
     <script src="/res/core.js"></script>
     <script src="/res/cookie.js"></script>
