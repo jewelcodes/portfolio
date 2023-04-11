@@ -5,7 +5,7 @@
 const artText = "\
     * Cat background: [Pixel Jeff](https://www.behance.net/gallery/103154127/SUDIO) on Behance\n\
     * Plant background: [@minimossart](https://twitter.com/minimossart) on Twitter\n\
-    * Blue evening background: [5ldo0on](https://www.deviantart.com/5ldo0on/art/Evening-Lights-895346742) on DeviantArt\n\
+    * Blue background: [5ldo0on](https://www.deviantart.com/5ldo0on/art/Evening-Lights-895346742) on DeviantArt\n\
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)\n\
     * Folder icon: [Pixel Art Maker](http://pixelartmaker.com/art/e4800219f1710c9)\n\
     * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
@@ -15,7 +15,8 @@ const artText = "\
     * Font: [Agave](https://b.agaric.net/page/agave), distributed under the [MIT license](https://github.com/blobject/agave/blob/master/LICENSE)";
 
 const contactText = "\
-    * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)";
+    * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)\n\
+    * [LinkedIn](https://linkedin.com/in/omarmelghoul/)";
 
 const mainText = "\
     Hi, I'm Jewel (obviously an alias) c:\n\n \
