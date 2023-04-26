@@ -234,6 +234,7 @@ async function appMain() {
 
     addMenuItem("About", mainWindow);
     addMenuItem("Blog", async function() { await openBlog(); });
+    addMenuItem("GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     addMenuItem("Contact", openContact);
     addMenuItem("Art Credits", showArt);
     addMenuItem("Settings", openSettings);  // more accessible on mobile
