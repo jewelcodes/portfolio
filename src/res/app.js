@@ -245,19 +245,22 @@ async function appMain() {
     //createDesktopIcon(desktopIconChecklist, "Changelog", function() { /* todo */ });
 
     //await openBlog();
-    mainWindow();
+    //mainWindow();
 
     // load the post specified by the ?p=ID parameter
     const uri = window.location.search;
     const parameters = new URLSearchParams(uri);
 
-    if(!parameters.has("p")) return;
+    if(!parameters.has("p")) {
+        return mainWindow();
+    }
 
     let id = parameters.get("p");
     await loadBlog();
     if(!await openBlogPost(id, true)) {
         // nonexistent blog post
         updateURI("/");
+        return mainWindow();
     }
 }
 
