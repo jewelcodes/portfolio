@@ -168,7 +168,21 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
+
+    let theme = getTheme();
+    let avatar;
+    switch(theme) {
+    case purpleTheme:
+        avatar = "res/images/avatar.png";
+        break;
+    case greenTheme:
+        avatar = "res/images/avatarcity.png";
+        break;
+    default:
+        avatar = "res/images/avatarnight.png";
+    }
+
+    createImage("main", avatar, "Avatar", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
