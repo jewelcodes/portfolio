@@ -17,6 +17,7 @@ const artText = "\
 
 const contactText = "\
     * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)\n\
+    * GitHub: [https://github.com/jewelcodes](https://github.com/jewelcodes)\n\
     * [LinkedIn](https://linkedin.com/in/omarmelghoul/)";
 
 const mainText = "\
@@ -167,8 +168,7 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    //createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
-    createImage("main", "res/images/swrslt.png", "Sewerslvt fan art", 33, 33, 2);
+    createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
@@ -180,7 +180,8 @@ function openContact() {
         return;
     }
 
-    createWindow("contact", "Contact", 30, -1, 0, 0);
+    createWindow("contact", "Contact", 31, -1, 0, 0);
+    createImage("contact", "res/images/swrslt.png", "Sewerslvt Fan Art", 33, 33, 2);
     dialog("contact", contactText, "OK");
     randomizeWindowPosition("contact");
     showWindow("contact");
