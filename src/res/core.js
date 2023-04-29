@@ -543,6 +543,18 @@ function adjustTaskbarSize() {
 }
 
 /* window body content manager */
+function getWindowChildren(id) {
+    debug("getWindowChildren('" + id + "')");
+
+    const w = document.getElementById(id);
+    if(!w) {
+        error("window '" + id + "' doesn't exist");
+        return null;
+    }
+
+    return w.children[1].children;
+}
+
 function dialog(id, text, buttonText) {    // creates a standard dialog with text and one button that closes it
     debug("dialog('" + id + "', '" + text + "', '" + buttonText + "')");
 
