@@ -6,6 +6,7 @@ const artText = "\
     * Cat background: [Pixel Jeff](https://www.behance.net/gallery/103154127/SUDIO) on Behance\n\
     * Plant background: [@minimossart](https://twitter.com/minimossart) on Twitter\n\
     * Blue background: [5ldo0on](https://www.deviantart.com/5ldo0on/art/Evening-Lights-895346742) on DeviantArt\n\
+    * Sewerslvt fan art: [USH1RT](https://www.redbubble.com/people/USH1RT/) on Redbubble\n\
     * Madeline & Badeline from [Celeste](https://store.steampowered.com/app/504230/Celeste/): [Pixel Art Maker](http://pixelartmaker.com/art/b2812518a5adf71)\n\
     * Folder icon: [Pixel Art Maker](http://pixelartmaker.com/art/e4800219f1710c9)\n\
     * Settings icon: [Kind PNG](https://www.kindpng.com/imgv/ThwoJoT_transparent-settings-icon-png-companion-cube-pixel-art/)\n\
@@ -166,7 +167,8 @@ function mainWindow() {
     }
 
     createWindow("main", "About", 42, -1, -1, -1);
-    createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
+    //createImage("main", "res/images/avatarnight.png", "Avatar", 33, 33, 2);
+    createImage("main", "res/images/swrslt.png", "Sewerslvt fan art", 33, 33, 2);
     createText("main", mainText);
     centerWindow("main");
     showWindow("main");
