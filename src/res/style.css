@@ -585,8 +585,8 @@ input[type=radio] {
     }
 
     #menu {
-        min-width: 70vw !important;
-        max-width: 80vw !important;
+        min-width: 57vw !important;
+        max-width: 64vw !important;
     }
 
     .mdImageContainer img {
