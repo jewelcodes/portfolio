@@ -308,7 +308,7 @@ h1, h2 {
     line-height: 105%;
 }
 
-h3, h4, h5 {
+h3, h4, h5, h6 {
     margin: 0px 0px 1px 0px !important;
     padding: 0px !important;
     line-height: 100%;
@@ -596,5 +596,28 @@ input[type=radio] {
     .taskbarButton {
         display: none !important;
     }
-}
 
+    h1 {
+        font-size: 1.6em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    h3 {
+        font-size: 1.3em;
+    }
+
+    h4 {
+        font-size: 1.2em;
+    }
+
+    h5 {
+        font-size: 1.1em;
+    }
+
+    h6 {
+        font-size: 1em;
+    }
+}
