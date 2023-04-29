@@ -642,7 +642,9 @@ function createOutlink(id, text, url) {    // creates a link that opens another 
     const l = document.createElement("a");
     l.href = url;
     l.innerText = text;
-    l.target = "_blank";    // new tab
+
+    if(url[0] != "#" && url[0] != "/")  // open other domains
+        l.target = "_blank";            // in a new tab
 
     content.appendChild(l);
 }
