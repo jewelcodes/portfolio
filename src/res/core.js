@@ -1088,6 +1088,12 @@ function setTheme(theme) {
     }
 }
 
+function getTheme() {
+    if(document.body.classList.contains("purpleTheme")) return purpleTheme;
+    else if(document.body.classList.contains("greenTheme")) return greenTheme;
+    else return blueTheme;
+}
+
 var isMobileDevice = false;
 window.onload = function() {
     window.onunload = function() {
