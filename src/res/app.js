@@ -242,6 +242,33 @@ function changeSettings(f) {
         setTheme(randomTheme);
     }
 
+    let theme = getTheme();
+    let avatar;
+    switch(theme) {
+    case purpleTheme:
+        avatar = "res/images/avatar.png";
+        break;
+    case greenTheme:
+        avatar = "res/images/avatarcity.png";
+        break;
+    default:
+        avatar = "res/images/avatarnight.png";
+    }
+
+    debug("update avatar");
+
+    const c = getWindowChildren("main");
+    debug(c);
+    if(c) {
+        for(let i = 0; i < c.length; i++) {
+            debug(i + " " + c[i].tagName)
+            if(c[i].tagName.toLowerCase() == "div") {
+                c[i].children[0].src = avatar;
+                return false;
+            }
+        }
+    }
+
     return false;
 }
 
