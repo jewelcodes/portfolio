@@ -218,9 +218,10 @@ function randomizeWindowPosition(id) {
     var maxx = window.innerWidth - w.offsetWidth;
     var maxy = window.innerHeight - w.offsetHeight;
 
-    var r = (Math.random()%0.6);
-    var x = r * maxx;
-    var y = r * maxy;
+    var rx = (Math.random()*0.6);
+    var ry = (Math.random()*0.6);
+    var x = rx * maxx;
+    var y = ry * maxy;
 
     // these boundaries will give the UI a more natural feel
     if(y < (taskbarHeight+32)) y = taskbarHeight + 32;
