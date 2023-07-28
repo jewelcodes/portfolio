@@ -22,7 +22,7 @@ const contactText = "\
 
 const mainText = "\
     Hi, I'm Omar Elghoul, aka Jewel c:\n\n \
-    I'm a 21-year-old undergrad biotech student from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
+    I'm a 21-year-old biotech fresh graduate from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
     I've had a passion for coding for as far back as I can remember and some of my work is showcased here.\n\n \
     This page is powered by a custom UI framework and blogging system built with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
