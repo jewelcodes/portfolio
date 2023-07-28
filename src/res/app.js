@@ -90,7 +90,7 @@ function timeString(t) {
         str = "just now";
     } else if(elapsed < 3600) {
         var min = Math.floor(elapsed/60);
-        if(min < 10 && min > 3) str = " a few minutes ago";
+        if(min < 10 && min > 3) str = "a few minutes ago";
         else if(min >= 10) str = min + " minutes ago";
         else str = "just now";
     } else if(elapsed < 86400) {
