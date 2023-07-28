@@ -35,6 +35,7 @@ function setActiveWindow(id) {
             activeWindow = id;
             titles[i].classList.add("titleActive");
             titles[i].parentNode.style.zIndex = windowCount + 2;
+            titles[i].parentNode.style.visibility = "visible";
         } else {
             titles[i].classList.remove("titleActive");
             titles[i].parentNode.style.zIndex--;
