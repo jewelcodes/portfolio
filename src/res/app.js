@@ -17,14 +17,14 @@ const artText = "\
 
 const contactText = "\
     * Email: [omarmelghoul01@gmail.com](mailto:omarmelghoul01@gmail.com)\n\
-    * GitHub: [https://github.com/jewelcodes](https://github.com/jewelcodes)\n\
-    * [LinkedIn](https://linkedin.com/in/omarmelghoul/)";
+    * GitHub: [jewelcodes](https://github.com/jewelcodes)\n\
+    * [LinkedIn profile](https://linkedin.com/in/omarmelghoul/)";
 
 const mainText = "\
     Hi, I'm Omar Elghoul, aka Jewel c:\n\n \
-    I'm a 21-year-old biotech fresh graduate from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo). \
+    I'm a 21-year-old biotech fresh graduate from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently residing in [Boston](https://en.wikipedia.org/wiki/Boston). \
     I've had a passion for coding for as far back as I can remember and some of my work is showcased here.\n\n \
-    This page is powered by a custom UI framework and blogging system built with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
+    Everything you see here is powered by a custom UI framework and blogging system made with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
 const cookieNotice = "\
     *Notice: *The functionality provided here uses cookies to deliver you the best possible experience. By changing settings here, you consent to using cookies.";
