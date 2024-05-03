@@ -900,6 +900,7 @@ const desktopIconGear = 1;
 const desktopIconGitHub = 2;
 const desktopIconChecklist = 3;
 const desktopIconEmail = 4;
+const desktopIconYearn = 5;
 
 const desktopIconContainerSize = 128;
 const desktopIconMargin = 24;
@@ -985,6 +986,9 @@ function createDesktopIcon(icon, name, handler) {
         break;
     case desktopIconEmail:
         i.classList.add("emailIcon");
+        break;
+    case desktopIconYearn:
+        i.classList.add("yearnIcon");
         break;
     default:
         error("undefined icon type ID " + icon);

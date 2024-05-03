@@ -539,6 +539,10 @@ input[type=file] {
     background-image: url("/res/images/email.png");
 }
 
+.yearnIcon {
+    background-image: url("https://theyearnvault.com/logo/favicon-192x192.png");
+}
+
 input[type=radio] {
     display: none !important;
 }
