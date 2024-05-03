@@ -23,7 +23,7 @@ const contactText = "\
 const mainText = "\
     Hi, I'm Omar Elghoul, aka Jewel c:\n\n \
     I'm a 22-year-old junior software engineer from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently residing in [Boston](https://en.wikipedia.org/wiki/Boston). \
-    I'm pursuing a master's in computer science I've had a passion for coding for as far back as I can remember. Some of my work is showcased here.\n\n \
+    I'm pursuing a master's in computer science & I've had a passion for coding for as far back as I can remember. Some of my work is showcased here.\n\n \
     Everything you see here is powered by a custom UI framework and blogging system made with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
 const cookieNotice = "\
