@@ -1043,35 +1043,6 @@ function updateClock() {
     document.getElementById("clock").innerText = hh + colon + mm + " " + ampm;
 }
 
-/* for the background heart and things */
-var heartMinx, heartMiny, heartMaxx, heartMaxy;
-var saturnMinx, saturnMiny, saturnMaxx, saturnMaxy;
-
-function moveBackground(e) {
-    const heart = document.getElementById("heart");
-    const saturn = document.getElementById("saturn");
-
-    var nx, ny;
-
-    nx = heart.offsetLeft + (e.movementX/30);
-    ny = heart.offsetTop + (e.movementY/30);
-    if(nx > heartMaxx) nx = heartMaxx;
-    if(nx < heartMinx) nx = heartMinx;
-    if(ny > heartMaxy) ny = heartMaxy;
-    if(ny < heartMiny) ny = heartMiny;
-    heart.style.left = nx + "px";
-    heart.style.top = ny + "px";
-
-    nx = saturn.offsetLeft - (e.movementX/25);
-    ny = saturn.offsetTop - (e.movementY/25);
-    if(nx > saturnMaxx) nx = saturnMaxx;
-    if(nx < saturnMinx) nx = saturnMinx;
-    if(ny > saturnMaxy) ny = saturnMaxy;
-    if(ny < saturnMiny) ny = saturnMiny;
-    saturn.style.left = nx + "px";
-    saturn.style.top = ny + "px";
-}
-
 const purpleTheme = 1;
 const greenTheme = 2;
 const blueTheme = 3;
@@ -1139,20 +1110,6 @@ window.onload = function() {
     if(result > 0) isMobileDevice = true;
 
     debug("mobile device: " + isMobileDevice);
-
-    // calculate boundaries for the heart and saturn background
-    const heart = document.getElementById("heart");
-    const saturn = document.getElementById("saturn");
-
-    heartMinx = heart.offsetLeft;
-    heartMaxx = (window.innerWidth/2) - (heart.offsetWidth);
-    heartMaxy = heart.offsetTop;
-    heartMiny = (window.innerHeight/2) - (heart.offsetHeight/2);
-
-    saturnMaxx = saturn.offsetLeft;
-    saturnMinx = (window.innerWidth/2) - (saturn.offsetWidth);
-    saturnMiny = saturn.offsetTop;
-    saturnMaxy = (window.innerHeight/2) - (saturn.offsetHeight/2);
 
     createTaskbar();
 
