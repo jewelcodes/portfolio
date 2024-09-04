@@ -195,7 +195,7 @@ function openContact() {
     }
 
     createWindow("contact", "Contact", 31, -1, 0, 0);
-    createImage("contact", "res/images/swrslt.png", "Sewerslvt Fan Art", 37, 37, 2);
+    createImage("contact", "res/images/dsotm.jpg", "Pink Floyd - The Dark Side of the Moon Pixel Art", 37, 37, 2);
     dialog("contact", contactText, "OK");
     randomizeWindowPosition("contact");
     showWindow("contact");
