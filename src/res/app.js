@@ -22,7 +22,7 @@ const contactText = "\
 
 const mainText = "\
     Hi, I'm Omar Elghoul, aka Jewel c:\n\n \
-    I'm a 22-year-old junior software engineer from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently residing in [Boston](https://en.wikipedia.org/wiki/Boston). \
+    I'm a junior software engineer from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently residing in [Boston](https://en.wikipedia.org/wiki/Boston). \
     I'm pursuing a master's in computer science & I've had a passion for coding for as far back as I can remember. Some of my work is showcased here.\n\n \
     Everything you see here is powered by a custom UI framework and blogging system made with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
@@ -278,14 +278,12 @@ async function appMain() {
 
     addMenuItem("About", mainWindow);
     addMenuItem("Blog", async function() { await openBlog(); });
-    addMenuItem("The Yearn Vault", function() { window.open("https://theyearnvault.com/", "_blank"); });
     addMenuItem("GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     addMenuItem("Contact", openContact);
     addMenuItem("Art Credits", showArt);
     addMenuItem("Settings", openSettings);  // more accessible on mobile
 
     createDesktopIcon(desktopIconFolder, "Blog", async function() { await openBlog(); });
-    createDesktopIcon(desktopIconYearn, "The Yearn Vault", function() { window.open("https://theyearnvault.com/", "_blank"); });
     createDesktopIcon(desktopIconGitHub, "GitHub", function() { window.open("https://github.com/jewelcodes", "_blank"); });
     createDesktopIcon(desktopIconEmail, "Contact", openContact);
     createDesktopIcon(desktopIconGear, "Settings", openSettings);
