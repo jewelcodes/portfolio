@@ -4,8 +4,10 @@
 
 /* windowing system that can be reused */
 
+let verbose = false;
+
 function debug(s) {
-    console.log("debug: " + s);
+    if(verbose) console.log("debug: " + s);
 }
 
 function error(s) {
@@ -1087,6 +1089,11 @@ function getTheme() {
 
 var isMobileDevice = false;
 window.onload = function() {
+    const uri = window.location.search;
+    const parameters = new URLSearchParams(uri);
+
+    verbose = parameters.has("verbose");
+
     // set the theme
     let theme = getCookie("theme");
     if(theme == "green") {
