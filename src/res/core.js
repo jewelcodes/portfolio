@@ -1087,10 +1087,6 @@ function getTheme() {
 
 var isMobileDevice = false;
 window.onload = function() {
-    window.onunload = function() {
-        if(appClose) appClose();
-    };
-
     // set the theme
     let theme = getCookie("theme");
     if(theme == "green") {
