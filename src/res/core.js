@@ -1120,7 +1120,6 @@ window.onload = function() {
     window.onmousemove = function(e) {
         handleDrag(e);
         handleScrollDrag(e);
-        moveBackground(e);
     };
 
     setInterval(function() { updateScrollbars(); }, 100);
