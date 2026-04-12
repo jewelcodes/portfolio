@@ -18,12 +18,12 @@ const artText = "\
 const contactText = "\
     * Email: [oelghoul@bu.edu](mailto:oelghoul@bu.edu)\n\
     * GitHub: [jewelcodes](https://github.com/jewelcodes)\n\
-    * [LinkedIn profile](https://linkedin.com/in/omarmelghoul/)";
+    * LinkedIn: [linkedin.com/in/omarmelghoul](https://linkedin.com/in/omarmelghoul/)";
 
 const mainText = "\
     Hi, I'm Omar Elghoul, aka Jewel c:\n\n \
-    I'm a software engineer from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently living in [Boston](https://en.wikipedia.org/wiki/Boston). \
-    I'm pursuing a master's in computer science & I've had a passion for coding for as far back as I can remember. Some of my work is showcased here.\n\n \
+    I'm a software engineer at IBM from the [land of the pyramids](https://en.wikipedia.org/wiki/Cairo) currently living in [heaven on the Hudson](https://en.wikipedia.org/wiki/Beacon,_New_York). \
+    I recently graduated with a master's in computer science from BostonU & I've had a passion for coding for as far back as I can remember. Some of my projects are showcased here.\n\n \
     Everything you see here is powered by a custom UI framework and blogging system made with love [entirely in JavaScript](https://github.com/jewelcodes/portfolio).";
 
 const cookieNotice = "\
