@@ -1017,7 +1017,7 @@ function updateClock() {
 
     h = date.getHours();
     m = date.getMinutes();
-    if(h > 12) {
+    if(h >= 12) {
         ampm = "PM";
         h -= 12;
     } else {
