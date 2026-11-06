@@ -578,6 +578,16 @@ input[type=radio] {
     }
 }
 
+@media screen and (min-width: 1367px) {
+    .window {
+        max-width: 33vw !important;
+    }
+
+    .mdImageContainer img {
+        max-width: 70%;
+    }
+}
+
 /* mobile only rules */
 @media screen and (max-width: 1279px), screen and (orientation: portrait) {
     .window {
