@@ -13,7 +13,7 @@ const artText = "\
     * GitHub logo: [Pixel Art Maker](http://pixelartmaker.com/art/d7e4e1e509c728d)\n\
     * Clipboard icon: [Nicholas Zaharias](http://www.ngzaharias.com/blog/2018/9/3/pixel-art)\n\
     * Email icon: [Pixel Art Maker](http://pixelartmaker.com/art/53c6e86088e2560)\n\
-    * Font: [Agave](https://b.agaric.net/page/agave), distributed under the [MIT license](https://github.com/blobject/agave/blob/master/LICENSE)";
+    * Font: [Recursive Mono](https://github.com/arrowtype/recursive), distributed under the [SIL OFL 1.1 license](https://github.com/arrowtype/recursive/blob/main/OFL.txt)";
 
 const contactText = "\
     * Email: [oelghoul@bu.edu](mailto:oelghoul@bu.edu)\n\

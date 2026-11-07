@@ -3,24 +3,26 @@
    jewel, 2022 */
 
 /* 
- * the agave font is distributed under the MIT license and is (c) 2013-2021 by
- * type agaric <agaric@protonmail.com>
- * https://b.agaric.net/page/agave
+ * Recursive Mono is used and redistributed under the SIL OFL 1.1 license.
+ * Kudos to Stephen Nixon for creating it and making it free!
  */
 
 @font-face {
-    font-family: agave;
-    src: url("/res/fonts/agave-regular.ttf");
+    font-family: "Recursive Mono";
+    src: url("/res/fonts/recursive-mono-ln-regular.ttf");
 }
 
 @font-face {
-    font-family: agave;
-    src: url("/res/fonts/agave-bold.ttf");
+    font-family: "Recursive Mono";
+    src: url("/res/fonts/recursive-mono-ln-bold.ttf");
     font-weight: bold;
 }
 
 * {
     outline: none !important;
+    --font-family: "Recursive Mono", monospace;
+    --base-font-size: 10pt;
+    --base-line-height: 14pt;
 }
 
 .purpleTheme {
@@ -110,9 +112,9 @@
 body {
     width: 100vw;
     height: 100vh;
-    font-family: agave, monospace;
-    font-size: 12pt;
-    line-height: 14pt;
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
     overflow: hidden !important;
     cursor: default;
     -moz-user-select: none;
@@ -241,9 +243,9 @@ p {
 }
 
 button, input[type=button], input[type=submit] {
-    font-family: agave, monospace;
-    font-size: 12pt;
-    line-height: 14pt;
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
     text-align: center;
     vertical-align: middle;
 
@@ -420,9 +422,9 @@ input[type=text], input[type=password], input[type=email], textarea {
     box-sizing: border-box;
     width: 100%;
 
-    font-family: agave, monospace;
-    font-size: 12pt;
-    line-height: 14pt;
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
 
     border: 2px solid;
     border-color: var(--object-dark) var(--object-bright) var(--object-bright) var(--object-dark);
