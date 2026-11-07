@@ -1125,7 +1125,7 @@ window.onload = function() {
         handleScrollDrag(e);
     };
 
-    setInterval(function() { updateScrollbars(); }, 100);
+    setInterval(function() { updateScrollbars(); }, 250);
 
     setInterval(function() { updateClock(); }, 500);
 
