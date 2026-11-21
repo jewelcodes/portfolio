@@ -71,7 +71,7 @@ async function openBlog() {
     await loadBlog();
 
     for(var i = 0; i < posts.posts.length; i++) {
-        blogMd += "* [" + posts.posts[i].title + "](bp:" + posts.posts[i].id + ") - " + timeString(posts.posts[i].time) + "\n";
+        blogMd += `* ${timeString(posts.posts[i].time)} - [${posts.posts[i].title}](bp:${posts.posts[i].id})\n`;
     }
 
     createWindow("blog", "Blog", 48, 35, 0, 0);
