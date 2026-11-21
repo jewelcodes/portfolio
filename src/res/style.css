@@ -588,6 +588,15 @@ input[type=radio] {
     .mdImageContainer img {
         max-width: 70%;
     }
+
+    .taskbarButton {
+        width: 12vw;
+    }
+
+    #menu {
+        min-width: 13vw;
+        max-width: 16vw;
+    }
 }
 
 /* mobile only rules */
